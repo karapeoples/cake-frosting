@@ -18,7 +18,7 @@ const AdminRegister = () => {
 		})
   }
   const handleSubmit = (e) => {
-    e.preventDEfault()
+    e.preventDefault()
     dispatch(registerAdmin(admin))
     setAdmin({
       fullName: '',
@@ -30,8 +30,8 @@ const AdminRegister = () => {
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor='name'>Full Name</label>
-				<input type='text' name='name' value={admin.fullName} placeholder='Enter Name' onChange={handleChange} />
+				<label htmlFor='fullName'>Full Name</label>
+				<input type='text' name='fullName' value={admin.fullName} placeholder='Enter Name' onChange={handleChange} />
 				<label htmlFor='email'>Email</label>
 				<input type='text' name='email' value={admin.email} placeholder='Enter Email' onChange={handleChange} />
 				<label htmlFor='password'>Password</label>

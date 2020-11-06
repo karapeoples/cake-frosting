@@ -46,7 +46,7 @@ const PatientRegister = () => {
 					placeholder='Enter A Password'
 					onChange={handleChange}
 				/>
-				<label htmlFor='card'>I am at least 18</label>
+				<label htmlFor='card'>Patient Card Number</label>
         <input type='text' name='card' vale={patient.card} placeholder='Enter your OMMA Number' onChange={handleChange} />
         <button>Submit</button>
 			</form>

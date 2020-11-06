@@ -18,7 +18,7 @@ const ClerkRegister = () => {
 		})
 	}
   const handleSubmit = (e) => {
-    e.preventDEfault()
+    e.preventDefault()
     dispatch(registerClerk(clerk))
     setClerk({
       fullName: '',
@@ -30,8 +30,8 @@ const ClerkRegister = () => {
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor='name'>Full Name</label>
-				<input type='text' name='name' value={clerk.fullName} placeholder='Enter Name' onChange={handleChange} />
+				<label htmlFor='fullName'>Full Name</label>
+				<input type='text' name='fullName' value={clerk.fullName} placeholder='Enter Name' onChange={handleChange} />
 				<label htmlFor='email'>Email</label>
 				<input type='text' name='email' value={clerk.email} placeholder='Enter Email' onChange={handleChange} />
 				<label htmlFor='password'>Password</label>
@@ -44,7 +44,6 @@ const ClerkRegister = () => {
 				/>
         <button>Submit</button>
 			</form>
-			f
 		</div>
 	)
 }
