@@ -1,12 +1,14 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 
-const PrivateRoute = ({ component: Component, ...props }) => {
+const AdminRoute = ({ component: Component, ...props }) => {
+	const token = localStorage.getItem('token')
+	const role = localStorage.getItem('role')
 	return (
 		<Route
 			{...props}
 			render={() => {
-				if (localStorage.getItem('token')) {
+				if (token && (role === 'admin')) {
 					return <Component />
 				} else {
 					return <Redirect to='/' />
@@ -16,4 +18,4 @@ const PrivateRoute = ({ component: Component, ...props }) => {
 	)
 }
 
-export default PrivateRoute
+export default AdminRoute
