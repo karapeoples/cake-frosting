@@ -1,0 +1,39 @@
+import React from 'react'
+import { updateUsers, getClerks } from '../../redux/actions'
+import {useDispatch} from 'react-redux'
+
+const ClerkEdit = ({editClerk, setEditClerk, setToggleEdit}) => {
+  const dispatch = useDispatch()
+
+  const handleToggleClose = () => {
+    setToggleEdit(false)
+  }
+
+  const handleSubmit = (e) => {
+    e.persist()
+    dispatch(updateUsers(editClerk))
+    dispatch(getClerks())
+    setToggleEdit(false)
+  }
+
+  const handleChange = (e) => {
+    setEditClerk({...editClerk, [e.target.name]:e.target.value})
+  }
+
+  return (
+			<div>
+				<form onSubmit={handleSubmit}>
+					<label htmlFor='fullName'>Full Name</label>
+					<input type='text' name='fullName' value={editClerk.fullName} placeholder='Enter Name' onChange={handleChange} />
+					<label htmlFor='email'>Email</label>
+					<input type='text' name='email' value={editClerk.email} placeholder='Enter Email' onChange={handleChange} />
+        <button>Submit</button>
+        <button onClick={handleToggleClose}>Cancel</button>
+      </form>
+
+
+			</div>
+		)
+}
+
+export default ClerkEdit
