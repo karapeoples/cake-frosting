@@ -47,7 +47,7 @@ const PatientRegister = () => {
 					onChange={handleChange}
 				/>
 				<label htmlFor='card'>Patient Card Number</label>
-        <input type='text' name='card' vale={patient.card} placeholder='Enter your OMMA Number' onChange={handleChange} />
+        <input type='text' name='card' value={patient.card} placeholder='Enter your OMMA Number' onChange={handleChange} />
         <button>Submit</button>
 			</form>
 		</div>
