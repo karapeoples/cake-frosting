@@ -1,24 +1,25 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import ClerkEdit from '../../forms/ClerkEdit'
+import AdminEdit from '../../forms/AdminEdit'
 import { getUserById } from '../../../redux/actions'
-import ClerkRemove from './ClerkRemove'
+import AdminRemove from './AdminRemove'
 
-const ClerkCard = ({ name, email, user_id, role_id }) => {
+const AdminCard = ({ name, email, user_id, role_id }) => {
 	const users = useSelector((state) => state.users)
 	const dispatch = useDispatch()
-	const [editClerk, setEditClerk] = useState({})
+	const [editAdmin, setEditAdmin] = useState({})
 	const [toggleEdit, setToggleEdit] = useState(false)
 	const [toggleRemove, setToggleRemove] = useState(false)
 	const [toggleTools, setToggleTools] = useState(false)
 
+
 	const toolToggle = () => {
 		dispatch(getUserById(user_id))
 		setToggleTools(!false)
-	}
+}
 
 	const toggleEditClick = () => {
-		setEditClerk(users)
+		setEditAdmin(users)
 		setToggleEdit(!false)
 	}
 	const verify = () => {
@@ -29,7 +30,7 @@ const ClerkCard = ({ name, email, user_id, role_id }) => {
 		<section>
 			<div>
 				<p>
-					{name} <br /> {email} <br /> Clerk Id:{role_id}
+					{name} <br /> {email} <br /> Admin Id:{role_id}
 				</p>
 				<button onClick={toolToggle}>Tools</button>
 				{toggleTools === !false ? (
@@ -41,9 +42,9 @@ const ClerkCard = ({ name, email, user_id, role_id }) => {
 			</div>
 
 			{toggleEdit === !false ? (
-				<ClerkEdit
-					editClerk={editClerk}
-					setEditClerk={setEditClerk}
+				<AdminEdit
+					editAdmin={editAdmin}
+					setEditAdmin={setEditAdmin}
 					setToggleEdit={setToggleEdit}
 					user_id={user_id}
 					setToggleTools={setToggleTools}
@@ -51,7 +52,7 @@ const ClerkCard = ({ name, email, user_id, role_id }) => {
 			) : null}
 
 			{toggleRemove === !false ? (
-				<ClerkRemove
+				<AdminRemove
 					name={name}
 					setToggleRemove={setToggleRemove}
 					user_id={user_id}
@@ -63,4 +64,4 @@ const ClerkCard = ({ name, email, user_id, role_id }) => {
 	)
 }
 
-export default ClerkCard
+export default AdminCard

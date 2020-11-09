@@ -6,8 +6,7 @@ const AdminNav = () => {
   const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('role')
-    localStorage.removeItem('user_id')
-    history.push('/login')
+  history.push('/login')
 }
   return (
     <div className='App-header'>
