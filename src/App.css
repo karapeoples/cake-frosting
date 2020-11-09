@@ -24,3 +24,12 @@ form{
  input{
    margin: 1%;
  }
+
+ .roleLink{
+   text-decoration: none;
+   border: 1px double #555;
+ }
+
+ .active{
+   text-decoration: underline overline;
+ }
