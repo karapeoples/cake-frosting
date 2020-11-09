@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {history} from '../index'
 
 const LandingPage = () => {
   const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('role')
-  localStorage.removeItem('user_id')
+  history.push('/login')
 }
 
   return (

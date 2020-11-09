@@ -2,7 +2,7 @@ import React from 'react'
 import { updateUsers, getClerks } from '../../redux/actions'
 import {useDispatch} from 'react-redux'
 
-const ClerkEdit = ({editClerk, setEditClerk, setToggleEdit}) => {
+const ClerkEdit = ({editClerk, setEditClerk, setToggleEdit, setToggleTools}) => {
   const dispatch = useDispatch()
 
   const handleToggleClose = () => {
@@ -14,6 +14,7 @@ const ClerkEdit = ({editClerk, setEditClerk, setToggleEdit}) => {
     dispatch(updateUsers(editClerk))
     dispatch(getClerks())
     setToggleEdit(false)
+    setToggleTools(false)
   }
 
   const handleChange = (e) => {

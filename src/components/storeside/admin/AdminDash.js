@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import AdminNav from './AdminNav'
 import ClerkList from './ClerkList'
+import AdminList from './AdminList'
 
 const AdminDash = () => {
   const [toggleClerks, setToggleClerks] = useState(false)
@@ -34,7 +35,7 @@ const AdminDash = () => {
       <section>
         {toggleClerks === !false ? <div><ClerkList/></div> : null}
         {togglePatients === !false ? <div><h1>Patients Go Here </h1></div> : null}
-        {toggleAdmins === !false ? <div><h1>Admins Go Here </h1></div> : null}
+        {toggleAdmins === !false ? <div><AdminList/></div> : null}
       </section>
 			</div>
 		)

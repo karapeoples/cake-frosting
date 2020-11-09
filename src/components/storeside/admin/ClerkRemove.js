@@ -2,13 +2,15 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import {removeUser, removeClerk, getClerks} from '../../../redux/actions'
 
-const ClerkRemove = ({ name, setToggleRemove, user_id, role_id }) => {
+const ClerkRemove = ({ name, setToggleRemove, user_id, role_id, setToggleTools }) => {
   const dispatch = useDispatch()
 
   const yes = () => {
     dispatch(removeUser(user_id))
     dispatch(removeClerk(role_id))
     dispatch(getClerks())
+    setToggleTools(false)
+		setToggleRemove(false)
   }
 
   const no = () => {
