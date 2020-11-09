@@ -7,8 +7,11 @@ export const SET_ERROR = 'SET_ERROR'
 export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const GET_SINGLE_USER = 'GET_SINGLE_USER'
 export const UPDATE_USERS = 'UPDATE_USERS'
+export const REMOVE_USER = 'REMOVE_USER'
 //CLERKS
 export const GET_CLERKS = 'GET_CLERKS'
+export const GET_CLERK_INFO = 'GET_CLERK_INFO'
+export const REMOVE_CLERK = 'REMOVE_CLERK'
 
 
 
@@ -103,11 +106,20 @@ export const getUserById = (id) => (dispatch) => {
 		})
 }
 export const updateUsers = (changes) => dispatch => {
-  getUsers()
   axiosWithAuth()
 			.put(`/user/all_user/${changes.id}`, changes)
 			.then((res) => {
 				dispatch({ type: UPDATE_USERS, payload: [res.data] })
+			})
+			.catch((err) => {
+				dispatch({ type: SET_ERROR, payload: err })
+			})
+}
+export const removeUser = (id) => dispatch => {
+  axiosWithAuth()
+			.delete(`/user/all_user/${id}`)
+			.then((res) => {
+				dispatch({ type: REMOVE_USER, payload: res.data })
 			})
 			.catch((err) => {
 				dispatch({ type: SET_ERROR, payload: err })
@@ -125,3 +137,23 @@ export const getClerks = () => (dispatch) => {
 		})
 }
 
+export const getClerkInfo = (id) => (dispatch) => {
+	axiosWithAuth()
+		.get(`/user/clerk_info/${id}`)
+		.then((res) => {
+			dispatch({ type: GET_CLERK_INFO, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+export const removeClerk = (id) => (dispatch) => {
+	axiosWithAuth()
+		.delete(`/user/del_clerk/${id}`)
+		.then((res) => {
+			dispatch({ type: REMOVE_CLERK, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}

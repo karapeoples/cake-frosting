@@ -5,7 +5,6 @@ const LandingPage = () => {
   const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('role')
-  localStorage.removeItem('card')
   localStorage.removeItem('user_id')
 }
 
