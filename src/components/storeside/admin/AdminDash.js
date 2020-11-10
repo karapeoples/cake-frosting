@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import AdminNav from './AdminNav'
 import ClerkList from './ClerkList'
+import PatientList from './PatientList'
 import AdminList from './AdminList'
 
 const AdminDash = () => {
@@ -28,15 +29,27 @@ const AdminDash = () => {
 			<div>
 				<AdminNav />
 				<div>
-					<button onClick={clerkToggle} >Clerks</button>
-          <button onClick={patientToggle} >Patients</button>
-          <button onClick ={adminToggle} >Admins</button>
-      </div>
-      <section>
-        {toggleClerks === !false ? <div><ClerkList/></div> : null}
-        {togglePatients === !false ? <div><h1>Patients Go Here </h1></div> : null}
-        {toggleAdmins === !false ? <div><AdminList/></div> : null}
-      </section>
+					<button onClick={clerkToggle}>Clerks</button>
+					<button onClick={patientToggle}>Patients</button>
+					<button onClick={adminToggle}>Admins</button>
+				</div>
+				<section>
+					{toggleClerks === !false ? (
+						<div>
+							<ClerkList />
+						</div>
+					) : null}
+					{togglePatients === !false ? (
+						<div>
+							<PatientList />
+						</div>
+					) : null}
+					{toggleAdmins === !false ? (
+						<div>
+							<AdminList />
+						</div>
+					) : null}
+				</section>
 			</div>
 		)
 }
