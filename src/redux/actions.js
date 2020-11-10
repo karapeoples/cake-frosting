@@ -10,7 +10,11 @@ export const REMOVE_USER = 'REMOVE_USER'
 //CLERKS
 export const GET_CLERKS = 'GET_CLERKS'
 export const REMOVE_CLERK = 'REMOVE_CLERK'
-
+//PATIENTS
+export const GET_PATIENTS = 'GET_PATIENTS'
+export const GET_PATIENT_CARD = 'GET_PATIENT_CARD'
+export const UPDATE_CARD = 'UPDATE_CARD'
+export const REMOVE_PATIENT = 'REMOVE_PATIENT'
 //ADMINS
 export const GET_ADMINS = 'GET_ADMINS'
 export const REMOVE_ADMIN = 'REMOVE_ADMIN'
@@ -136,6 +140,49 @@ export const removeClerk = (id) => (dispatch) => {
 		})
 }
 
+//PATIENTS
+export const getPatients = () => (dispatch) => {
+	axiosWithAuth()
+		.get('/user/patient')
+		.then((res) => {
+			dispatch({ type: GET_PATIENTS, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+export const getPatientCard = (id) => (dispatch) => {
+	axiosWithAuth()
+		.get(`/user/card/${id}`)
+		.then((res) => {
+			dispatch({ type: GET_PATIENT_CARD, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+export const updateCard = (changes, id) => (dispatch) => {
+	axiosWithAuth()
+		.put(`/user/card/${id}`, changes)
+		.then((res) => {
+			dispatch({ type: UPDATE_CARD, payload: [res.data] })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+export const removePatient = (id) => (dispatch) => {
+	axiosWithAuth()
+		.delete(`/user/card/${id}`)
+		.then((res) => {
+			dispatch({ type: REMOVE_PATIENT, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
 //ADMIN
 export const getAdmins = () => (dispatch) => {
 	axiosWithAuth()
