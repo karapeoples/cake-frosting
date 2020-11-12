@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import {registerPatient} from '../../redux/actions'
+import {registerPatient} from '../../../redux/actions'
 
 const PatientRegister = () => {
   const dispatch = useDispatch()
@@ -8,6 +8,7 @@ const PatientRegister = () => {
 		fullName: '',
 		email: '',
 		password: '',
+		phone:'',
 		card:'',
 		role: 'patient',
 	})
@@ -26,6 +27,7 @@ const PatientRegister = () => {
 					fullName: '',
 					email: '',
 					password: '',
+					phone:'',
 					card:'',
 					role: 'patient',
 				})
@@ -37,6 +39,8 @@ const PatientRegister = () => {
 				<label htmlFor='fullName'>Full Name</label>
 				<input type='text' name='fullName' value={patient.fullName} placeholder='Enter Name' onChange={handleChange} />
 				<label htmlFor='email'>Email</label>
+				<label htmlFor='phone'>Phone</label>
+				<input type='text' name='phone' value={patient.phone} placeholder='Enter Phone' onChange={handleChange} />
 				<input type='text' name='email' value={patient.email} placeholder='Enter Email' onChange={handleChange} />
 				<label htmlFor='password'>Password</label>
 				<input
@@ -47,8 +51,8 @@ const PatientRegister = () => {
 					onChange={handleChange}
 				/>
 				<label htmlFor='card'>Patient Card Number</label>
-        <input type='text' name='card' value={patient.card} placeholder='Enter your OMMA Number' onChange={handleChange} />
-        <button>Submit</button>
+				<input type='text' name='card' value={patient.card} placeholder='Enter your OMMA Number' onChange={handleChange} />
+				<button>Submit</button>
 			</form>
 		</div>
 	)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { updateUsers, updateCard, getPatients } from '../../redux/actions'
+import { updateUsers, updateCard, getPatients } from '../../../redux/actions'
 import { useDispatch } from 'react-redux'
 
 const PatientEdit = ({ editPatient, setEditPatient, editCard, setEditCard, setToggleEdit, setToggleTools, role_id }) => {
@@ -33,6 +33,8 @@ const PatientEdit = ({ editPatient, setEditPatient, editCard, setEditCard, setTo
 				<input type='text' name='fullName' value={editPatient.fullName} placeholder='Enter Name' onChange={handleChange} />
 				<label htmlFor='email'>Email</label>
 				<input type='text' name='email' value={editPatient.email} placeholder='Enter Email' onChange={handleChange} />
+				<label htmlFor='phone'>Phone</label>
+				<input type='text' name='phone' value={editPatient.phone} placeholder='Enter Phone' onChange={handleChange} />
 				<label htmlFor='card'>Card</label>
 				<input type='text' name='card' value={editCard.card} placeholder='Enter Email' onChange={handleCard} />
 				<button>Submit</button>

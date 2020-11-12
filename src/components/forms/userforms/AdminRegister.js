@@ -1,44 +1,48 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { registerClerk } from '../../redux/actions'
+import { registerAdmin } from '../../../redux/actions'
 
-const ClerkRegister = () => {
+const AdminRegister = () => {
   const dispatch = useDispatch()
-	const [clerk, setClerk] = useState({
+	const [admin, setAdmin] = useState({
 		fullName: '',
 		email: '',
+		phone:'',
 		password: '',
-		role: 'clerk',
+		role: 'admin',
 	})
 
 	const handleChange = (e) => {
-		setClerk({
-			...clerk,
+		setAdmin({
+			...admin,
 			[e.target.name]: e.target.value,
 		})
-	}
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(registerClerk(clerk))
-    setClerk({
+    dispatch(registerAdmin(admin))
+    setAdmin({
       fullName: '',
-      email: '',
+			email: '',
+			phone: '',
       password: '',
-      role: 'clerk',
+      role: 'admin',
     })
   }
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor='fullName'>Full Name</label>
-				<input type='text' name='fullName' value={clerk.fullName} placeholder='Enter Name' onChange={handleChange} />
+				<input type='text' name='fullName' value={admin.fullName} placeholder='Enter Name' onChange={handleChange} />
 				<label htmlFor='email'>Email</label>
-				<input type='text' name='email' value={clerk.email} placeholder='Enter Email' onChange={handleChange} />
+				<label htmlFor='phone'>Phone</label>
+				<input type='text' name='phone' value={admin.phone} placeholder='Enter Phone' onChange={handleChange} />
+				<input type='text' name='email' value={admin.email} placeholder='Enter Email' onChange={handleChange} />
 				<label htmlFor='password'>Password</label>
 				<input
 					type='password'
 					name='password'
-					value={clerk.password}
+					value={admin.password}
 					placeholder='Enter A Password'
 					onChange={handleChange}
 				/>
@@ -48,4 +52,4 @@ const ClerkRegister = () => {
 	)
 }
 
-export default ClerkRegister
+export default AdminRegister

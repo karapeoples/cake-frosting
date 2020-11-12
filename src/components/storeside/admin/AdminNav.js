@@ -16,6 +16,9 @@ const AdminNav = () => {
       <div>
         <Link to='/clerk'><button>Make Clerk</button></Link>
       </div>
+      <div>
+        <Link to='/store-dash'><button>Store</button></Link>
+      </div>
     </div>
   )
 }

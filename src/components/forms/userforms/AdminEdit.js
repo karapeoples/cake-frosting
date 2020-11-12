@@ -1,5 +1,5 @@
 import React from 'react'
-import { updateUsers, getAdmins } from '../../redux/actions'
+import { updateUsers, getAdmins } from '../../../redux/actions'
 import { useDispatch } from 'react-redux'
 
 const AdminEdit = ({ editAdmin, setEditAdmin, setToggleEdit, setToggleTools }) => {
@@ -29,6 +29,8 @@ const AdminEdit = ({ editAdmin, setEditAdmin, setToggleEdit, setToggleTools }) =
 				<input type='text' name='fullName' value={editAdmin.fullName} placeholder='Enter Name' onChange={handleChange} />
 				<label htmlFor='email'>Email</label>
 				<input type='text' name='email' value={editAdmin.email} placeholder='Enter Email' onChange={handleChange} />
+				<label htmlFor='phone'>Phone</label>
+				<input type='text' name='phone' value={editAdmin.phone} placeholder='Enter Phone' onChange={handleChange} />
 				<button>Submit</button>
 				<button onClick={handleToggleClose}>Cancel</button>
 			</form>
