@@ -13,7 +13,7 @@ const LandingPage = () => {
     <div>
     <div className='App-header'>
       <Link to='/'>Home</Link>
-      <Link to='/register'>Register</Link>
+      <Link to='/register'>Patient Register</Link>
       </div>
       <button onClick={logout}>LogOut</button>
     </div>

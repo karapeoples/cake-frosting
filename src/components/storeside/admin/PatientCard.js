@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import PatientEdit from '../../forms/PatientEdit'
+import PatientEdit from '../../forms/userforms/PatientEdit'
 import { getUserById, getPatientCard } from '../../../redux/actions'
 import PatientRemove from './PatientRemove'
 
@@ -12,7 +12,8 @@ const PatientCard = ({ name, email, user_id, role_id, card }) => {
   const [editCard, setEditCard] = useState({})
 	const [toggleEdit, setToggleEdit] = useState(false)
 	const [toggleRemove, setToggleRemove] = useState(false)
-	const [toggleTools, setToggleTools] = useState(false)
+  const [toggleTools, setToggleTools] = useState(false)
+  const role = localStorage.getItem('role')
 
 	const toolToggle = () => {
     dispatch(getUserById(user_id))
@@ -39,7 +40,9 @@ const PatientCard = ({ name, email, user_id, role_id, card }) => {
 				{toggleTools === !false ? (
 					<div>
 						<button onClick={toggleEditClick}>Edit</button>
-						<button onClick={verify}>Delete</button>
+						{role === 'admin' ?
+							<button onClick={verify}>Delete</button>
+							: null}
 					</div>
 				) : null}
 			</div>
@@ -55,7 +58,8 @@ const PatientCard = ({ name, email, user_id, role_id, card }) => {
           role_id={role_id}
 					setToggleTools={setToggleTools}
 				/>
-			) : null}
+      ) : null}
+
 
 			{toggleRemove === !false ? (
 				<PatientRemove
@@ -65,7 +69,8 @@ const PatientCard = ({ name, email, user_id, role_id, card }) => {
 					role_id={role_id}
 					setToggleTools={setToggleTools}
 				/>
-			) : null}
+			) : null
+			}
 		</section>
 	)
 }

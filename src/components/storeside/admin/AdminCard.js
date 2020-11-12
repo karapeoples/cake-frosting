@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import AdminEdit from '../../forms/AdminEdit'
+import AdminEdit from '../../forms/userforms/AdminEdit'
 import { getUserById } from '../../../redux/actions'
 import AdminRemove from './AdminRemove'
 

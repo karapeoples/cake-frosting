@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import ClerkEdit from '../../forms/ClerkEdit'
+import ClerkEdit from '../../forms/userforms/ClerkEdit'
 import { getUserById } from '../../../redux/actions'
 import ClerkRemove from './ClerkRemove'
 
