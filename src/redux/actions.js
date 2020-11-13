@@ -3,6 +3,7 @@ import { history } from '../index'
 
 
 export const SET_ERROR = 'SET_ERROR'
+export const POST_SUCCESS = 'POST_SUCCESS'
 //ALL USERS
 export const GET_SINGLE_USER = 'GET_SINGLE_USER'
 export const UPDATE_USERS = 'UPDATE_USERS'
@@ -18,8 +19,15 @@ export const REMOVE_PATIENT = 'REMOVE_PATIENT'
 //ADMINS
 export const GET_ADMINS = 'GET_ADMINS'
 export const REMOVE_ADMIN = 'REMOVE_ADMIN'
-
-
+//ALL FLOWER
+export const GET_ALL_FLOWER = 'GET_ALL_FLOWER'
+export const GET_FLOWER_BY_ID = 'GET_FLOWER_BY_ID'
+export const GET_FLOWER_BY_NAME = 'GET_FLOWER_BY_NAME'
+export const UPDATE_FLOWER = 'UPDATE_FLOWER'
+//CURRENT FLOWER
+export const GET_STOCK = 'GET_STOCK'
+export const GRAB_FLOWER_TO_REMOVE= 'GRAB_FLOWER_TO_REMOVE'
+export const DELETE_STOCK_FLOWER = 'DELETE_STOCK_FLOWER'
 
 //REGISTRATION & LOGIN
 export const registerPatient = (userObj) => dispatch => {
@@ -29,7 +37,8 @@ export const registerPatient = (userObj) => dispatch => {
       console.log(res.data)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('role', res.data.createdUser.role)
-      history.push('/login')
+			history.push('/login')
+			dispatch({ type: POST_SUCCESS, payload: res.data.createdUser })
     })
     .catch(err => {
     dispatch({type: SET_ERROR, payload: err})
@@ -42,7 +51,8 @@ export const registerClerk = (userObj) => dispatch => {
     .then(res => {
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('role', res.data.createdUser.role)
-      history.push('/login')
+			history.push('/login')
+			dispatch({ type: POST_SUCCESS, payload: res.data.createdUser })
     })
   .catch(err => {
     dispatch({type: SET_ERROR, payload: err})
@@ -56,6 +66,7 @@ export const registerAdmin = (userObj) => dispatch => {
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('role', res.data.createdUser.role)
 				history.push('/admin-tools')
+				dispatch({ type: POST_SUCCESS, payload: res.data.createdUser })
 			})
 			.catch((err) => {
 				dispatch({ type: SET_ERROR, payload: err })
@@ -70,7 +81,7 @@ export const login = (credentials) => dispatch => {
       localStorage.setItem('role', res.data.user.role)
       if (res.data.user.role === 'patient') {
         localStorage.setItem('card', res.data.roleInfo.card)
-        history.push('/cart')
+				history.push('/cart')
       }
       else if (res.data.user.role === 'admin') {
         history.push('/admin-tools')
@@ -204,4 +215,118 @@ export const removeAdmin = (id) => (dispatch) => {
 		.catch((err) => {
 			dispatch({ type: SET_ERROR, payload: err })
 		})
+}
+
+
+//STORE ENDPOINTS/////////////////////
+
+//Flower Database
+export const getAllFlowers = () => (dispatch) => {
+	axiosWithAuth()
+		.get('/strain/flower')
+		.then((res) => {
+			dispatch({ type: GET_ALL_FLOWER, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+export const flowerById = (id) => (dispatch) => {
+	axiosWithAuth()
+		.get(`/strain/flower/${id}`)
+		.then((res) => {
+			dispatch({ type: GET_FLOWER_BY_ID, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+export const flowerByName = (name) => (dispatch) => {
+	axiosWithAuth()
+		.get(`/strain/flower/name/${name}`)
+		.then((res) => {
+			dispatch({ type: GET_FLOWER_BY_NAME, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+export const addFlower = (flowerObject) => (dispatch) => {
+	axiosWithAuth()
+		.post('/strain/flower', flowerObject)
+		.then((res) => {
+			dispatch({type: POST_SUCCESS, payload: res.data.info})
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+export const updateFlower = (changes) => dispatch => {
+	axiosWithAuth()
+		.put(`/strain/flower/${changes.id}`, changes)
+		.then((res) => {
+			dispatch({ type: UPDATE_FLOWER, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+//IN STOCK FLOWERS
+export const getCurrentFlower = () => dispatch => {
+	axiosWithAuth()
+		.get('/strain/flower_stock')
+		.then((res) => {
+			dispatch({ type: GET_STOCK, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+
+export const addCurrentFlower =(flowerObject) => dispatch =>{
+	axiosWithAuth()
+		.post('/strain/flower_stock', flowerObject)
+		.then((res) => {
+			dispatch({ type: POST_SUCCESS, payload: res.data.info })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err})
+		})
+}
+
+export const pickFlower = (id) => async dispatch => {
+	let flowerToRemove
+	try {
+		try {
+			var currentFlowers = await axiosWithAuth().get('/strain/flower_stock')
+			var flower = await axiosWithAuth().get(`/strain/flower/${id}`)
+			flowerToRemove = currentFlowers.data.filter((flowers) => flowers.flower_id === flower.data.id
+			)
+		}
+		catch (err) {
+			dispatch({ type: SET_ERROR, payload: err })
+		}
+		finally {
+			return dispatch({ type: GRAB_FLOWER_TO_REMOVE, payload: [...flowerToRemove] })
+		}
+	}
+	catch (err) {
+		dispatch({ type: SET_ERROR, payload: err })
+	}
+}
+
+export const removeCurrentFlower = (id) => dispatch => {
+  axiosWithAuth()
+			.delete(`/strain/flower_stock/${id}`)
+			.then((res) => {
+				dispatch({ type: DELETE_STOCK_FLOWER, payload: res.data })
+			})
+			.catch((err) => {
+				dispatch({ type: SET_ERROR, payload: err })
+			})
 }

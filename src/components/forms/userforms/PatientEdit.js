@@ -32,9 +32,9 @@ const PatientEdit = ({ editPatient, setEditPatient, editCard, setEditCard, setTo
 				<label htmlFor='fullName'>Full Name</label>
 				<input type='text' name='fullName' value={editPatient.fullName} placeholder='Enter Name' onChange={handleChange} />
 				<label htmlFor='email'>Email</label>
-				<input type='text' name='email' value={editPatient.email} placeholder='Enter Email' onChange={handleChange} />
+				<input type='email' name='email' value={editPatient.email} placeholder='Enter Email' onChange={handleChange} />
 				<label htmlFor='phone'>Phone</label>
-				<input type='text' name='phone' value={editPatient.phone} placeholder='Enter Phone' onChange={handleChange} />
+				<input type='tel' name='phone' value={editPatient.phone} placeholder='Enter Phone' onChange={handleChange} />
 				<label htmlFor='card'>Card</label>
 				<input type='text' name='card' value={editCard.card} placeholder='Enter Email' onChange={handleCard} />
 				<button>Submit</button>
