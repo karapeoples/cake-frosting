@@ -1,12 +1,17 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import {  SET_ERROR, GET_SINGLE_USER, GET_CLERKS, UPDATE_USERS, REMOVE_USER, REMOVE_CLERK, GET_PATIENTS, GET_PATIENT_CARD, UPDATE_CARD, REMOVE_PATIENT, GET_ADMINS, REMOVE_ADMIN } from './actions';
+import { POST_SUCCESS, SET_ERROR, GET_SINGLE_USER, GET_CLERKS, UPDATE_USERS, REMOVE_USER, REMOVE_CLERK, GET_PATIENTS, GET_PATIENT_CARD, UPDATE_CARD, REMOVE_PATIENT, GET_ADMINS, REMOVE_ADMIN, GET_ALL_FLOWER, GET_FLOWER_BY_ID, GET_FLOWER_BY_NAME, UPDATE_FLOWER, GET_STOCK, GRAB_FLOWER_TO_REMOVE, DELETE_STOCK_FLOWER } from './actions';
 
 const initialState = {
 	users: [],
 	clerks: [],
 	admins: [],
 	patients: [],
+	addSuccess: [],
+	allFlowers: [],
+	flower: [],
+	stockFlower:[],
+	changes: [],
 	error: '',
 };
 
@@ -16,6 +21,11 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				error: action.payload,
+			}
+		case POST_SUCCESS:
+			return {
+				...state,
+				addSuccess: action.payload,
 			}
 		case GET_SINGLE_USER:
 			return {
@@ -71,6 +81,41 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				admins: [action.payload],
+			}
+		case GET_ALL_FLOWER:
+			return {
+				...state,
+				allFlowers: action.payload,
+			}
+		case GET_FLOWER_BY_ID:
+			return {
+				...state,
+				changes: action.payload,
+			}
+		case GET_FLOWER_BY_NAME:
+			return {
+				...state,
+				flower: action.payload,
+			}
+		case UPDATE_FLOWER:
+			return {
+				...state,
+				flower: action.payload,
+			}
+			case GET_STOCK:
+				return{
+					...state,
+					stockFlower: action.payload
+				}
+		case GRAB_FLOWER_TO_REMOVE:
+			return {
+				...state,
+				stockFlower: action.payload
+			}
+		case DELETE_STOCK_FLOWER:
+			return {
+				...state,
+				stockFlower: action.payload
 			}
 		default:
 			return state

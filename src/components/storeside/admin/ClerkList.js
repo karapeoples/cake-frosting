@@ -26,7 +26,7 @@ const ClerkList = () => {
 	return (
 		<div>
 			<form>
-				<input placeholder='Search...' onChange={handleChange} type='text' name='search' value={search} />
+				<input placeholder='Search...' onChange={handleChange} type='search' name='search' value={search} />
 			</form>
 			{filteredClerks.map((info, index) => {
 				return (

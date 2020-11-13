@@ -28,9 +28,9 @@ const AdminEdit = ({ editAdmin, setEditAdmin, setToggleEdit, setToggleTools }) =
 				<label htmlFor='fullName'>Full Name</label>
 				<input type='text' name='fullName' value={editAdmin.fullName} placeholder='Enter Name' onChange={handleChange} />
 				<label htmlFor='email'>Email</label>
-				<input type='text' name='email' value={editAdmin.email} placeholder='Enter Email' onChange={handleChange} />
+				<input type='email' name='email' value={editAdmin.email} placeholder='Enter Email' onChange={handleChange} />
 				<label htmlFor='phone'>Phone</label>
-				<input type='text' name='phone' value={editAdmin.phone} placeholder='Enter Phone' onChange={handleChange} />
+				<input type='tel' name='phone' value={editAdmin.phone} placeholder='Enter Phone' onChange={handleChange} />
 				<button>Submit</button>
 				<button onClick={handleToggleClose}>Cancel</button>
 			</form>

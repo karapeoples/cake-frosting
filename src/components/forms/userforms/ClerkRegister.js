@@ -35,9 +35,9 @@ const ClerkRegister = () => {
 				<label htmlFor='fullName'>Full Name</label>
 				<input type='text' name='fullName' value={clerk.fullName} placeholder='Enter Name' onChange={handleChange} />
 				<label htmlFor='email'>Email</label>
+				<input type='email' name='email' value={clerk.email} placeholder='Enter Email' onChange={handleChange} />
 				<label htmlFor='phone'>Phone</label>
-				<input type='text' name='phone' value={clerk.phone} placeholder='Enter Phone' onChange={handleChange} />
-				<input type='text' name='email' value={clerk.email} placeholder='Enter Email' onChange={handleChange} />
+				<input type='tel' name='phone' value={clerk.phone} placeholder='Enter Phone' onChange={handleChange} />
 				<label htmlFor='password'>Password</label>
 				<input
 					type='password'
