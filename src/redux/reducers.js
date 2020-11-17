@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { POST_SUCCESS, SET_ERROR, GET_SINGLE_USER, GET_CLERKS, UPDATE_USERS, REMOVE_USER, REMOVE_CLERK, GET_PATIENTS, GET_PATIENT_CARD, UPDATE_CARD, REMOVE_PATIENT, GET_ADMINS, REMOVE_ADMIN, GET_ALL_FLOWER, GET_FLOWER_BY_ID, GET_FLOWER_BY_NAME, UPDATE_FLOWER, GET_STOCK, GRAB_FLOWER_TO_REMOVE, DELETE_STOCK_FLOWER } from './actions';
+import { POST_SUCCESS, SET_ERROR, GET_SINGLE_USER, GET_CLERKS, UPDATE_USERS, REMOVE_USER, REMOVE_CLERK, GET_PATIENTS, GET_PATIENT_CARD, UPDATE_CARD, REMOVE_PATIENT, GET_ADMINS, REMOVE_ADMIN, GET_ALL_FLOWER, GET_FLOWER_BY_ID, GET_FLOWER_BY_NAME, UPDATE_FLOWER, GET_STOCK,GET_CURRENT_BY_ID, GRAB_FLOWER_TO_REMOVE, DELETE_STOCK_FLOWER, GET_STOCK_PR, GET_CURRENT_PR_BY_ID, GRAB_PR_TO_REMOVE, DELETE_STOCK_PR } from './actions';
 
 const initialState = {
 	users: [],
@@ -10,7 +10,8 @@ const initialState = {
 	addSuccess: [],
 	allFlowers: [],
 	flower: [],
-	stockFlower:[],
+	stockFlower: [],
+	inHouse:[],
 	changes: [],
 	error: '',
 };
@@ -102,20 +103,45 @@ const reducer = (state = initialState, action) => {
 				...state,
 				flower: action.payload,
 			}
-			case GET_STOCK:
-				return{
-					...state,
-					stockFlower: action.payload
-				}
+		case GET_STOCK:
+			return {
+				...state,
+				stockFlower: action.payload,
+			}
+		case GET_CURRENT_BY_ID:
+			return {
+				...state,
+				stockFlower: action.payload,
+			}
 		case GRAB_FLOWER_TO_REMOVE:
 			return {
 				...state,
-				stockFlower: action.payload
+				stockFlower: action.payload,
 			}
 		case DELETE_STOCK_FLOWER:
 			return {
 				...state,
-				stockFlower: action.payload
+				stockFlower: action.payload,
+			}
+		case GET_STOCK_PR:
+			return {
+				...state,
+				inHouse: action.payload,
+			}
+		case GET_CURRENT_PR_BY_ID:
+			return {
+				...state,
+				inHouse: action.payload,
+			}
+		case GRAB_PR_TO_REMOVE:
+			return {
+				...state,
+				inHouse: action.payload,
+			}
+		case DELETE_STOCK_PR:
+			return {
+				...state,
+				inHouse: action.payload,
 			}
 		default:
 			return state
