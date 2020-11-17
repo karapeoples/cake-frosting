@@ -26,8 +26,15 @@ export const GET_FLOWER_BY_NAME = 'GET_FLOWER_BY_NAME'
 export const UPDATE_FLOWER = 'UPDATE_FLOWER'
 //CURRENT FLOWER
 export const GET_STOCK = 'GET_STOCK'
+export const GET_CURRENT_BY_ID = 'GET_CURRENT_BY_ID'
 export const GRAB_FLOWER_TO_REMOVE= 'GRAB_FLOWER_TO_REMOVE'
 export const DELETE_STOCK_FLOWER = 'DELETE_STOCK_FLOWER'
+//INHOUSE PRE_ROLL
+export const GET_STOCK_PR = 'GET_STOCK_PR'
+export const GET_CURRENT_PR_BY_ID = 'GET_CURRENT_PR_BY_ID'
+export const GRAB_PR_TO_REMOVE = 'GRAB_PR_TO_REMOVE'
+export const DELETE_STOCK_PR = 'DELETE_STOCK_PR'
+
 
 //REGISTRATION & LOGIN
 export const registerPatient = (userObj) => dispatch => {
@@ -287,7 +294,16 @@ export const getCurrentFlower = () => dispatch => {
 		})
 }
 
-
+export const getCurrentById = (id) => (dispatch) => {
+	axiosWithAuth()
+		.get(`/strain/flower_stock/${id}`)
+		.then((res) => {
+			dispatch({ type: GET_CURRENT_BY_ID, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
 export const addCurrentFlower =(flowerObject) => dispatch =>{
 	axiosWithAuth()
 		.post('/strain/flower_stock', flowerObject)
@@ -329,4 +345,73 @@ export const removeCurrentFlower = (id) => dispatch => {
 			.catch((err) => {
 				dispatch({ type: SET_ERROR, payload: err })
 			})
+}
+
+//IN HOUSE PRE ROLLS
+
+export const getCurrentPR = () => (dispatch) => {
+	axiosWithAuth()
+		.get('/strain/preRoll')
+		.then((res) => {
+			dispatch({ type: GET_STOCK_PR, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+export const getCurrentPRById = (id) => (dispatch) => {
+	axiosWithAuth()
+		.get(`/strain/preRoll/${id}`)
+		.then((res) => {
+			dispatch({ type: GET_CURRENT_PR_BY_ID, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+export const pickPreRoll = (id) => async (dispatch) => {
+	let preRollToRemove
+	try {
+		try {
+			var currentPR = await axiosWithAuth().get('/strain/preRoll')
+			var flower = await axiosWithAuth().get(`/strain/flower/${id}`)
+			preRollToRemove = currentPR.data.filter((flowers) => flowers.flower_id === flower.data.id)
+		} catch (err) {
+			dispatch({ type: SET_ERROR, payload: err })
+		} finally {
+			return dispatch({ type: GRAB_PR_TO_REMOVE, payload: [...preRollToRemove] })
+		}
+	} catch (err) {
+		dispatch({ type: SET_ERROR, payload: err })
+	}
+}
+
+export const addCurrentPR = (prObject) => (dispatch) => {
+	axiosWithAuth()
+		.post('/strain/preRoll', prObject)
+		.then((res) => {
+			dispatch({ type: POST_SUCCESS, payload: res.data.info })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+export const removeCurrentPR = (id) => (dispatch) => {
+	axiosWithAuth()
+		.delete(`/strain/preRoll/${id}`)
+		.then((res) => {
+			dispatch({ type: DELETE_STOCK_PR, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+//COMPANY PRE ROLLS
+
+//Company PreRoll Database
+
+export const getAllPreRolls = () => dispatch =>{
+
 }
