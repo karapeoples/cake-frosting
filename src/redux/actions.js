@@ -34,7 +34,16 @@ export const GET_STOCK_PR = 'GET_STOCK_PR'
 export const GET_CURRENT_PR_BY_ID = 'GET_CURRENT_PR_BY_ID'
 export const GRAB_PR_TO_REMOVE = 'GRAB_PR_TO_REMOVE'
 export const DELETE_STOCK_PR = 'DELETE_STOCK_PR'
-
+//COMPANY PRE_ROLL
+export const GET_COMPANY_PR = 'GET_COMPANY_PR'
+export const GET_COMPANY_PR_BY_ID = 'GET_COMPANY_PR_BY_ID'
+export const GET_COMPANY_PR_BY_NAME = 'GET_COMPANY_PR_BY_NAME'
+export const UPDATE_PR = 'UPDATE_PR'
+//STOCK COMPANY PRE_ROLL
+export const GET_PR_STOCK = 'GET_PR_STOCK'
+export const GET_CURRENT_COMPANY_PR_BY_ID = 'GET_CURRENT_COMPANY_PR_BY_ID'
+export const GRAB_COMPANY_PR_TO_REMOVE = 'GRAB_COMPANY_PR_TO_REMOVE'
+export const DELETE_STOCK_COMPANY_PR = 'DELETE_STOCK_COMPANY_PR'
 
 //REGISTRATION & LOGIN
 export const registerPatient = (userObj) => dispatch => {
@@ -412,6 +421,117 @@ export const removeCurrentPR = (id) => (dispatch) => {
 
 //Company PreRoll Database
 
-export const getAllPreRolls = () => dispatch =>{
+export const getCompanyPR = () => (dispatch) => {
+	axiosWithAuth()
+		.get('/pr/companyPR')
+		.then((res) => {
+			dispatch({ type: GET_COMPANY_PR, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
 
+export const preRollById = (id) => (dispatch) => {
+	axiosWithAuth()
+		.get(`/pr/companyPR/${id}`)
+		.then((res) => {
+			dispatch({ type: GET_COMPANY_PR_BY_ID, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+export const preRollByName = (name) => (dispatch) => {
+	axiosWithAuth()
+		.get(`/pr/companyPR/name/${name}`)
+		.then((res) => {
+			dispatch({ type: GET_COMPANY_PR_BY_NAME, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+export const addCompanyPR = (prObject) => (dispatch) => {
+	axiosWithAuth()
+		.post('/pr/companyPR', prObject)
+		.then((res) => {
+			dispatch({ type: POST_SUCCESS, payload: res.data.info })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+export const updateCompanyPR = (changes) => (dispatch) => {
+	axiosWithAuth()
+		.put(`/pr/companyPR/${changes.id}`, changes)
+		.then((res) => {
+			dispatch({ type: UPDATE_PR, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+//IN STOCK Company PreRolls
+export const getCurrentCompanyPR = () => (dispatch) => {
+	axiosWithAuth()
+		.get('/pr/pr_stock')
+		.then((res) => {
+			dispatch({ type: GET_PR_STOCK, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+export const getCurrentCompanyPRById = (id) => (dispatch) => {
+	axiosWithAuth()
+		.get(`/pr/pr_stock/${id}`)
+		.then((res) => {
+			dispatch({ type: GET_CURRENT_COMPANY_PR_BY_ID, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+export const addCurrentCompanyPR = (prObject) => (dispatch) => {
+	axiosWithAuth()
+		.post('/pr/pr_stock', prObject)
+		.then((res) => {
+			dispatch({ type: POST_SUCCESS, payload: res.data.info })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
+}
+
+export const pickCompanyPR = (id) => async (dispatch) => {
+	let preRollToRemove
+	try {
+		try {
+			var currentPRs = await axiosWithAuth().get('/pr/pr_stock')
+			var PR = await axiosWithAuth().get(`/pr/companyPR/${id}`)
+			preRollToRemove = currentPRs.data.filter((prs) => prs.preRoll_id === PR.data.id)
+		} catch (err) {
+			dispatch({ type: SET_ERROR, payload: err })
+		} finally {
+			return dispatch({ type: GRAB_COMPANY_PR_TO_REMOVE, payload: [...preRollToRemove] })
+		}
+	} catch (err) {
+		dispatch({ type: SET_ERROR, payload: err })
+	}
+}
+
+export const removeCurrentCompanyPR = (id) => (dispatch) => {
+	axiosWithAuth()
+		.delete(`/pr/pr_stock/${id}`)
+		.then((res) => {
+			dispatch({ type: DELETE_STOCK_COMPANY_PR, payload: res.data })
+		})
+		.catch((err) => {
+			dispatch({ type: SET_ERROR, payload: err })
+		})
 }

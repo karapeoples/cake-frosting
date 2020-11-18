@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { flowerByName } from '../../../redux/actions'
-import InHouseProductCard from './InHouseProductCard'
+import { preRollByName } from '../../../redux/actions'
+import CompanyProductCard from './CompanyProductCard'
 
 const CompanyPRCard = ({setToggle}) => {
-	const flowerName = useSelector((state) => state.allFlowers)
+	const preRollName = useSelector((state) => state.companyPRS)
 	const dispatch = useDispatch()
 	const [toggleProduct, setToggleProduct] = useState(false)
 	const [search, setSearch] = useState('')
@@ -20,10 +20,10 @@ const CompanyPRCard = ({setToggle}) => {
 	const select = (e) => {
 		e.preventDefault()
 		if (search !== '') {
-			dispatch(flowerByName(search))
+			dispatch(preRollByName(search))
 			setToggleProduct(!false)
 		} else if (search === '') {
-			alert('Choose A Strain')
+			alert('Choose A PreRoll')
 		}
 	}
 
@@ -32,8 +32,8 @@ const CompanyPRCard = ({setToggle}) => {
 			<section>
 				<form onSubmit={select}>
 					<select onClick={handleChange} onChange={handleChange} type='select' name='search' value={search}>
-						{flowerName.map((strain, i) => {
-							return <option key={i}>{strain.name}</option>
+						{preRollName.map((pr, i) => {
+							return <option key={i}>{pr.name}</option>
 						})}
 					</select>
 					<button>Select</button>
@@ -41,7 +41,7 @@ const CompanyPRCard = ({setToggle}) => {
 			</section>
 			{toggleProduct === !false ? (
 				<section>
-					<InHouseProductCard />
+					<CompanyProductCard />
 				</section>
 			) : null}
 			<button onClick={cancel}>Cancel</button>

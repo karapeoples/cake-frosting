@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import {getAllFlowers, getAllPreRolls} from '../../../redux/actions'
+import {getAllFlowers, getCompanyPR} from '../../../redux/actions'
 import AddFlower from '../../forms/storeforms/AddFlower'
-import AddCompanyPreRoll from '../../forms/storeforms/AddCurrentPreRoll.js'
+import AddCompanyPreRoll from '../../forms/storeforms/AddCompanyPreRoll.js'
 import CompanyPRCard from './CompanyPRCard'
 import FlowerProductCard from './FlowerProductCard'
 
@@ -36,7 +36,7 @@ const flowerProductToggle = () => {
 
 }
 const preRollProductToggle = () => {
-  dispatch(getAllPreRolls())
+  dispatch(getCompanyPR())
   setPreRollProduct(!false)
 }
 
@@ -57,12 +57,12 @@ const preRollProductToggle = () => {
 					<button onClick={companyPRToggle}>Company Pre Roll</button>
 					{preRoll === false ? null : (
 						<div>
-							<button onClick={preRollAddToggle}>Add New Flower</button>
+							<button onClick={preRollAddToggle}>Add New Company PreRoll</button>
 							{addPreRollForm === !false ? <AddCompanyPreRoll setToggle={setAddPreRollForm} /> : null}
 							<button onClick={preRollProductToggle}>Current Product Tools</button>
 							{preRollProduct === !false ? <CompanyPRCard setToggle={setPreRollProduct} /> : null}
-						</div>
-					)}
+					</div>
+				)}
 				</section>
 			</div>
 		)

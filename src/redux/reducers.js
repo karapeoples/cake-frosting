@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { POST_SUCCESS, SET_ERROR, GET_SINGLE_USER, GET_CLERKS, UPDATE_USERS, REMOVE_USER, REMOVE_CLERK, GET_PATIENTS, GET_PATIENT_CARD, UPDATE_CARD, REMOVE_PATIENT, GET_ADMINS, REMOVE_ADMIN, GET_ALL_FLOWER, GET_FLOWER_BY_ID, GET_FLOWER_BY_NAME, UPDATE_FLOWER, GET_STOCK,GET_CURRENT_BY_ID, GRAB_FLOWER_TO_REMOVE, DELETE_STOCK_FLOWER, GET_STOCK_PR, GET_CURRENT_PR_BY_ID, GRAB_PR_TO_REMOVE, DELETE_STOCK_PR } from './actions';
+import { POST_SUCCESS, SET_ERROR, GET_SINGLE_USER, GET_CLERKS, UPDATE_USERS, REMOVE_USER, REMOVE_CLERK, GET_PATIENTS, GET_PATIENT_CARD, UPDATE_CARD, REMOVE_PATIENT, GET_ADMINS, REMOVE_ADMIN, GET_ALL_FLOWER, GET_FLOWER_BY_ID, GET_FLOWER_BY_NAME, UPDATE_FLOWER, GET_STOCK,GET_CURRENT_BY_ID, GRAB_FLOWER_TO_REMOVE, DELETE_STOCK_FLOWER, GET_STOCK_PR, GET_CURRENT_PR_BY_ID, GRAB_PR_TO_REMOVE, DELETE_STOCK_PR, GET_COMPANY_PR, GET_COMPANY_PR_BY_ID, GET_COMPANY_PR_BY_NAME, UPDATE_PR, GET_PR_STOCK, GET_CURRENT_COMPANY_PR_BY_ID, GRAB_COMPANY_PR_TO_REMOVE, DELETE_STOCK_COMPANY_PR} from './actions';
 
 const initialState = {
 	users: [],
@@ -13,6 +13,9 @@ const initialState = {
 	stockFlower: [],
 	inHouse:[],
 	changes: [],
+	companyPRS:[],
+	companyPR: [],
+	companyStock:[],
 	error: '',
 };
 
@@ -142,6 +145,46 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				inHouse: action.payload,
+			}
+		case GET_COMPANY_PR:
+			return {
+				...state,
+				companyPRS: action.payload,
+			}
+		case GET_COMPANY_PR_BY_ID:
+			return {
+				...state,
+				changes: action.payload,
+			}
+		case GET_COMPANY_PR_BY_NAME:
+			return {
+				...state,
+				companyPR: action.payload,
+			}
+		case UPDATE_PR:
+			return {
+				...state,
+				companyPR: action.payload,
+			}
+		case GET_PR_STOCK:
+			return {
+				...state,
+				companyStock: action.payload,
+			}
+		case GET_CURRENT_COMPANY_PR_BY_ID:
+			return {
+				...state,
+				companyStock: action.payload,
+			}
+		case GRAB_COMPANY_PR_TO_REMOVE:
+			return {
+				...state,
+				companyStock: action.payload,
+			}
+		case DELETE_STOCK_COMPANY_PR:
+			return {
+				...state,
+				companyStock: action.payload,
 			}
 		default:
 			return state
