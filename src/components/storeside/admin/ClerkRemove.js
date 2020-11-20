@@ -1,15 +1,16 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import {removeUser, removeClerk, getClerks} from '../../../redux/actions'
+import { Button, Alert } from 'reactstrap'
 
-const ClerkRemove = ({ name, setToggleRemove, user_id, role_id, setToggleTools }) => {
+const ClerkRemove = ({ name, setToggleRemove, user_id, role_id}) => {
   const dispatch = useDispatch()
 
-  const yes = () => {
+  const yes = (e) => {
+    e.preventDefault()
     dispatch(removeUser(user_id))
     dispatch(removeClerk(role_id))
     dispatch(getClerks())
-    setToggleTools(false)
 		setToggleRemove(false)
   }
 
@@ -17,12 +18,24 @@ const ClerkRemove = ({ name, setToggleRemove, user_id, role_id, setToggleTools }
   setToggleRemove(false)
 }
   return (
-    <div>
-      <h6>Are you sure you wish to remove {name}?</h6>
-      <button onClick={yes}>Yes</button>
-      <button onClick={no}>No</button>
-    </div>
-  )
+			<div>
+				<Alert color='warning'>
+					<b>
+						Warning!!
+						<br /> You are about to remove {name} from the store database forever...
+					</b>
+				</Alert>
+				Are you sure you wish to remove {name}?
+				<div>
+					<Button color='success' size='sm' onClick={yes}>
+						Yes
+					</Button>
+					<Button color='danger' size='sm' onClick={no}>
+						No
+					</Button>
+				</div>
+			</div>
+		)
 }
 
 export default ClerkRemove

@@ -7,6 +7,7 @@ const StoreDash = () => {
   const toggleNav = () => {
     openNav === false ? setOpenNav(!false): setOpenNav(false)
   }
+   
   return (
     <div>
       <button onClick={toggleNav}>Tools</button>

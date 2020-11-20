@@ -4,31 +4,43 @@
 
 
 .App-header {
-  background-color: silver;
+  background-color: whitesmoke;
+  border: 3px double #28A745;
   min-height: 5vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: green;
+  margin: 1%;
+  padding: 1%;
 }
 
+.nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 1%;
+}
+.n-link{
+  text-decoration: none;
+  font-size: calc(10px + 2vmin);
+
+  color:#28A745;
+}
+.n-link:hover {
+color:#28A745;
+}
 
 form{
   display: flex;
   flex-direction: column;
   width: 75%;
   margin: 1% auto;
-  border: 3px double #555
+  border: 5px double #28A745;
+  padding: 1%;
 }
- input{
-   margin: 1%;
- }
 
- .roleLink{
-   text-decoration: none;
-   border: 1px double #555;
- }
 
  .active{
    text-decoration: underline overline;

@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import { history } from '../../../index'
+import {Button} from 'reactstrap'
 
 const AdminNav = () => {
   const logout = () => {
@@ -10,15 +11,10 @@ const AdminNav = () => {
 }
   return (
     <div className='App-header'>
-      <div>
-      <button onClick={logout}> Log Out</button>
-      </div>
-      <div>
-        <Link to='/clerk'><button>Make Clerk</button></Link>
-      </div>
-      <div>
-        <Link to='/store-dash'><button>Store</button></Link>
-      </div>
+      <Link to='/patientRegister'><Button color='success' size='sm'>Add Patient</Button></Link>
+      <Link to='/clerk'><Button color='success' size='sm'>Make Clerk</Button></Link>
+      <Link to='/store-dash'><Button color='success' size='sm'>Store</Button></Link>
+      <Button onClick={logout} color='danger' size='sm'> Log Out</Button>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { registerClerk } from '../../../redux/actions'
+import { Label, Input, Button } from 'reactstrap'
 
 const ClerkRegister = () => {
   const dispatch = useDispatch()
@@ -31,22 +32,42 @@ const ClerkRegister = () => {
   }
 	return (
 		<div>
+			<h3>Register a New Clerk</h3>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor='fullName'>Full Name</label>
-				<input type='text' name='fullName' value={clerk.fullName} placeholder='Enter Name' onChange={handleChange} />
-				<label htmlFor='email'>Email</label>
-				<input type='email' name='email' value={clerk.email} placeholder='Enter Email' onChange={handleChange} />
-				<label htmlFor='phone'>Phone</label>
-				<input type='tel' name='phone' value={clerk.phone} placeholder='Enter Phone' onChange={handleChange} />
-				<label htmlFor='password'>Password</label>
-				<input
+				<Label htmlFor='fullName'>Full Name</Label>
+				<Input
+					bsSize='sm'
+					type='text'
+					name='fullName'
+					value={clerk.fullName}
+					placeholder='Enter Name'
+					onChange={handleChange}
+				/>
+				<Label htmlFor='email'>Email</Label>
+				<Input
+					bsSize='sm'
+					type='email'
+					name='email'
+					value={clerk.email}
+					placeholder='Enter Email'
+					onChange={handleChange}
+				/>
+				<Label htmlFor='phone'>Phone</Label>
+				<Input bsSize='sm' type='tel' name='phone' value={clerk.phone} placeholder='Enter Phone' onChange={handleChange} />
+				<Label htmlFor='password'>Password</Label>
+				<Input
+					bsSize='sm'
 					type='password'
 					name='password'
 					value={clerk.password}
 					placeholder='Enter A Password'
 					onChange={handleChange}
 				/>
-				<button>Submit</button>
+				<div style={{ margin: '3% auto' }}>
+					<Button color='success' size='sm'>
+						Submit
+					</Button>
+				</div>
 			</form>
 		</div>
 	)

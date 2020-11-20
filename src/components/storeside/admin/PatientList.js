@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPatients } from '../../../redux/actions'
 import PatientCard from './PatientCard'
+import { Row, Input } from 'reactstrap'
 
 const PatientList = () => {
 	const patients = useSelector((state) => state.patients)
@@ -23,14 +24,16 @@ const PatientList = () => {
 	return (
 		<div>
 			<form>
-				<input placeholder='Search...' onChange={handleChange} type='search' name='search' value={search} />
+				<Input bsSize='sm' placeholder='Search...' onChange={handleChange} type='search' name='search' value={search} />
 			</form>
+			<Row>
 			{filteredPatients.map((info, index) => {
 				return (
 					<PatientCard
 						key={index}
 						name={info.fullName}
 						email={info.email}
+						phone={info.phone}
             role={info.role}
             card={info.card}
 						user_id={info.user_id}
@@ -38,6 +41,7 @@ const PatientList = () => {
 					/>
 				)
 			})}
+			</Row>
 		</div>
 	)
 }

@@ -12,11 +12,12 @@ const StoreNav = () => {
 		}
   return (
     <div style={{display: 'flex', flexDirection:'column'}}>
-      <Link to='/patients'><button>Patients</button></Link>
+      <Link to='/patientList'><button>Existing Patients</button></Link>
+      <Link to='/patientRegister'><button>Add New Patient</button></Link>
       <Link to='/form_center'><button>Form Center</button></Link>
-      <button>Transactions</button>
+      {/* <button>Transactions</button> */}
       {role === 'admin' ? <Link to='/admin-tools'><button>Admin Board</button></Link> :
-        <button onClick={logOut}>LogOut</button>
+      <button onClick={logOut}>LogOut</button>
       }
     </div>
   )

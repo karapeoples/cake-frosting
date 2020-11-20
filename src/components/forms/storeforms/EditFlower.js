@@ -51,8 +51,8 @@ const EditFlower = ({ setToggle }) => {
 					<input type='number' name='cbd' value={newFlower.cbd} onChange={handleChange} />
 					<label htmlFor='terps'>Terps</label>
 					<input type='text' name='terps' value={newFlower.terps} onChange={handleChange} placeholder='Enter Terps' />
-					<label htmlFor='pricePerOz'>Price</label>
-					<input type='number' name='pricePerOz' value={newFlower.pricePerOz} onChange={handleChange} />
+					<label htmlFor='pricePerGram'>Price</label>
+					<input type='number' name='pricePerGram' value={newFlower.pricePerGram} onChange={handleChange} />
 					<button>Submit</button>
 				</form>
 				<button onClick={toggle}>Cancel</button>
