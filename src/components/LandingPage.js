@@ -1,23 +1,40 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {history} from '../index'
+import React, { useState } from 'react'
+import { history } from '../index'
 
 const LandingPage = () => {
-  const logout = () => {
-  localStorage.removeItem('token')
-  localStorage.removeItem('role')
-  history.push('/login')
-}
+  const [legal, setLegal]= useState(false)
+	const yes = (e) => {
+		e.preventDefault()
+		localStorage.setItem('is_Legal', true)
+    history.push('/products')
+    setLegal(true)
+	}
 
-  return (
-    <div>
-    <div className='App-header'>
-      <Link to='/'>Home</Link>
-      <Link to='/register'>Patient Register</Link>
-      </div>
-      <button onClick={logout}>LogOut</button>
-    </div>
-  )
+	const no = (e) => {
+    alert('You must be over 18 to view this site')
+    localStorage.setItem('is_Legal', false)
+	}
+
+
+	return (
+		<div>
+			<div className='App-header'>WELCOME TO STORE NAME HERE</div>
+			{legal === false ? (
+				<div>
+				<div>
+					<h3>Are you 18 or Over?</h3>
+					<button onClick={yes}>Yes</button>
+					<button onClick={no}>No</button>
+				</div>
+				<div>
+					<div>
+						<img src='https://i.cbc.ca/1.4083484.1541030505!/fileImage/httpImage/image.JPG_gen/derivatives/16x9_780/pot-shop.JPG' alt='store' />
+					</div>
+					</div>
+				</div>) : null
+		}
+		</div>
+	)
 }
 
 export default LandingPage

@@ -92,7 +92,7 @@ const InHouseProductCard = () => {
 				THC: {singleFlower.thc}% | CBD: {singleFlower.cbd}% | TERPS: {singleFlower.terps}%
 			</span>
 			<p>Type:{singleFlower.type}</p>
-			<p> ${singleFlower.pricePerOz} per OZ</p>
+			<p> ${singleFlower.pricePerGram} per Gram</p>
 			<button onClick={toggleTools}>Tools</button>
 			<button onClick={closeTools}>Close Tools</button>
 			{tools === false ? null : (

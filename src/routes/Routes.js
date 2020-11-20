@@ -5,7 +5,7 @@ import PatientRoute from '../utils/PatientRoute'
 import AdminRoute from '../utils/AdminRoute'
 import LandingPage from '../components/LandingPage'
 import AdminDash from '../components/storeside/admin/AdminDash'
-import Order from '../components/patientside/Order'
+import Products from '../components/patientside/Products'
 import PatientRegister from '../components/forms/userforms/PatientRegister'
 import ClerkRegister from '../components/forms/userforms/ClerkRegister'
 import AdminRegister from '../components/forms/userforms/AdminRegister'
@@ -21,11 +21,11 @@ const Routes = () => {
 				<AdminRoute  path='/admin-tools' component={AdminDash} />
 				<AdminRoute path='/clerk' component={ClerkRegister} />
 				<StoreRoute path='/store-dash' component={StoreDash} />
-				<StoreRoute path='/patients' component={PatientList}/>
+				<StoreRoute path='/patientList' component={PatientList}/>
 				<StoreRoute path='/form_center' component={FormCenter}/>
-				<PatientRoute path='/cart' component={Order} />
+				<PatientRoute path='/products' component={Products} />
 				<Route path='/login' component={Login} />
-				<Route path='/register' component={PatientRegister} />
+				<Route path='/patientRegister' component={PatientRegister} />
 				<Route path='/admin' component={AdminRegister} />
 				<Route exact path='/' component={LandingPage} />
 			</Switch>

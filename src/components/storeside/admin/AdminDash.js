@@ -1,55 +1,32 @@
-import React, {useState} from 'react'
+import React from 'react'
+import {NavLink, Route} from 'react-router-dom'
 import AdminNav from './AdminNav'
 import ClerkList from './ClerkList'
 import PatientList from './PatientList'
 import AdminList from './AdminList'
 
 const AdminDash = () => {
-  const [toggleClerks, setToggleClerks] = useState(false)
-  const [togglePatients, setTogglePatients] = useState(false)
-  const [toggleAdmins, setToggleAdmins] = useState(false)
 
-  const clerkToggle = () => {
-    setToggleClerks(!false)
-    setTogglePatients(false)
-    setToggleAdmins(false)
-  }
-  const patientToggle = () => {
-    setToggleClerks(false)
-    setTogglePatients(!false)
-    setToggleAdmins(false)
-  }
-  const adminToggle = () => {
-    setToggleClerks(false)
-    setTogglePatients(false)
-    setToggleAdmins(!false)
-  }
 
   return (
 			<div>
 				<AdminNav />
-				<div>
-					<button onClick={clerkToggle}>Clerks</button>
-					<button onClick={patientToggle}>Patients</button>
-					<button onClick={adminToggle}>Admins</button>
+				<div className='nav'>
+					<NavLink to='/admin-tools/clerks' className='n-link'>
+						Clerks
+					</NavLink>
+					<NavLink to='/admin-tools/patientList' className='n-link'>
+						Patients
+					</NavLink>
+					<NavLink to='/admin-tools/admins' className='n-link'>
+						Admins
+					</NavLink>
 				</div>
-				<section>
-					{toggleClerks === !false ? (
-						<div>
-							<ClerkList />
-						</div>
-					) : null}
-					{togglePatients === !false ? (
-						<div>
-							<PatientList />
-						</div>
-					) : null}
-					{toggleAdmins === !false ? (
-						<div>
-							<AdminList />
-						</div>
-					) : null}
-				</section>
+				<div>
+					<Route path='/admin-tools/clerks' component={ClerkList} />
+					<Route path='/admin-tools/patientList' component={PatientList} />
+					<Route path='/admin-tools/admins' component={AdminList} />
+				</div>
 			</div>
 		)
 }

@@ -1,15 +1,16 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { removeUser, removePatient, getPatients } from '../../../redux/actions'
+import { Button, Alert } from 'reactstrap'
 
-const PatientRemove = ({ name, setToggleRemove, user_id, role_id, setToggleTools }) => {
+const PatientRemove = ({ name, setToggleRemove, user_id, role_id}) => {
 	const dispatch = useDispatch()
 
-	const yes = () => {
+	const yes = (e) => {
+		e.preventDefault()
 		dispatch(removeUser(user_id))
 		dispatch(removePatient(role_id))
 		dispatch(getPatients())
-		setToggleTools(false)
 		setToggleRemove(false)
 	}
 
@@ -18,9 +19,21 @@ const PatientRemove = ({ name, setToggleRemove, user_id, role_id, setToggleTools
 	}
 	return (
 		<div>
-			<h6>Are you sure you wish to remove {name}?</h6>
-			<button onClick={yes}>Yes</button>
-			<button onClick={no}>No</button>
+			<Alert color='warning'>
+				<b>
+					Warning!!
+					<br /> You are about to remove {name} from the store database forever...
+				</b>
+			</Alert>
+			Are you sure you wish to remove {name}?
+			<div>
+				<Button color='success' size='sm' onClick={yes}>
+					Yes
+				</Button>
+				<Button color='danger' size='sm' onClick={no}>
+					No
+				</Button>
+			</div>
 		</div>
 	)
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import {registerPatient} from '../../../redux/actions'
+import { registerPatient } from '../../../redux/actions'
+import { Label, Input, Button } from 'reactstrap'
 
 const PatientRegister = () => {
   const dispatch = useDispatch()
@@ -35,24 +36,58 @@ const PatientRegister = () => {
 
 	return (
 		<div>
+			<h3>Add A New Patient</h3>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor='fullName'>Full Name</label>
-				<input type='text' name='fullName' value={patient.fullName} placeholder='Enter Name' onChange={handleChange} />
-				<label htmlFor='email'>Email</label>
-				<input type='email' name='email' value={patient.email} placeholder='Enter Email' onChange={handleChange} />
-				<label htmlFor='phone'>Phone</label>
-				<input type='tel' name='phone' value={patient.phone} placeholder='Enter Phone' onChange={handleChange} />
-				<label htmlFor='password'>Password</label>
-				<input
+				<Label htmlFor='fullName'>Full Name</Label>
+				<Input
+					bsSize='sm'
+					type='text'
+					name='fullName'
+					value={patient.fullName}
+					placeholder='Enter Name'
+					onChange={handleChange}
+				/>
+				<Label htmlFor='email'>Email</Label>
+				<Input
+					bsSize='sm'
+					type='email'
+					name='email'
+					value={patient.email}
+					placeholder='Enter Email'
+					onChange={handleChange}
+				/>
+				<Label htmlFor='phone'>Phone</Label>
+				<Input
+					bsSize='sm'
+					type='tel'
+					name='phone'
+					value={patient.phone}
+					placeholder='Enter Phone'
+					onChange={handleChange}
+				/>
+				<Label htmlFor='password'>Password</Label>
+				<Input
+					bsSize='sm'
 					type='password'
 					name='password'
 					value={patient.password}
 					placeholder='Enter A Password'
 					onChange={handleChange}
 				/>
-				<label htmlFor='card'>Patient Card Number</label>
-				<input type='text' name='card' value={patient.card} placeholder='Enter your OMMA Number' onChange={handleChange} />
-				<button>Submit</button>
+				<Label htmlFor='card'>Patient Card Number</Label>
+				<Input
+					bsSize='sm'
+					type='text'
+					name='card'
+					value={patient.card}
+					placeholder='Enter your OMMA Number'
+					onChange={handleChange}
+				/>
+				<div style={{ margin: '3% auto' }}>
+					<Button color='success' size='sm'>
+						Submit
+					</Button>
+				</div>
 			</form>
 		</div>
 	)

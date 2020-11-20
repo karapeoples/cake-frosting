@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getClerks } from '../../../redux/actions'
 import ClerkCard from './ClerkCard'
+import { Row, Input } from 'reactstrap'
 
 const ClerkList = () => {
 	const clerks = useSelector((state) => state.clerks)
@@ -26,20 +27,23 @@ const ClerkList = () => {
 	return (
 		<div>
 			<form>
-				<input placeholder='Search...' onChange={handleChange} type='search' name='search' value={search} />
+				<Input bsSize='sm' placeholder='Search...' onChange={handleChange} type='search' name='search' value={search} />
 			</form>
+			<Row>
 			{filteredClerks.map((info, index) => {
 				return (
 					<ClerkCard
 						key={index}
 						name={info.fullName}
 						email={info.email}
+						phone={info.phone}
 						role={info.role}
 						user_id={info.user_id}
 						role_id={info.clerk_id}
 					/>
 				)
 			})}
+			</Row>
 		</div>
 	)
 }

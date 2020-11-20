@@ -1,20 +1,21 @@
 import React from 'react'
 import { updateUsers, getClerks } from '../../../redux/actions'
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { Button, Label, Input } from 'reactstrap'
 
-const ClerkEdit = ({editClerk, setEditClerk, setToggleEdit, setToggleTools}) => {
+const ClerkEdit = ({editClerk, setEditClerk, setToggleEdit}) => {
   const dispatch = useDispatch()
 
-  const handleToggleClose = () => {
+  const handleToggleClose = (e) => {
+    e.preventDefault()
     setToggleEdit(false)
   }
 
   const handleSubmit = (e) => {
-    e.persist()
+    e.preventDefault()
     dispatch(updateUsers(editClerk))
     dispatch(getClerks())
     setToggleEdit(false)
-    setToggleTools(false)
   }
 
   const handleChange = (e) => {
@@ -24,14 +25,41 @@ const ClerkEdit = ({editClerk, setEditClerk, setToggleEdit, setToggleTools}) => 
   return (
 			<div>
 				<form onSubmit={handleSubmit}>
-					<label htmlFor='fullName'>Full Name</label>
-					<input type='text' name='fullName' value={editClerk.fullName} placeholder='Enter Name' onChange={handleChange} />
-					<label htmlFor='email'>Email</label>
-					<input type='email' name='email' value={editClerk.email} placeholder='Enter Email' onChange={handleChange} />
-					<label htmlFor='phone'>Phone</label>
-					<input type='tel' name='phone' value={editClerk.phone} placeholder='Enter Phone' onChange={handleChange} />
-					<button>Submit</button>
-					<button onClick={handleToggleClose}>Cancel</button>
+					<Label htmlFor='fullName'>Full Name</Label>
+					<Input
+						bsSize='sm'
+						type='text'
+						name='fullName'
+						value={editClerk.fullName}
+						placeholder='Enter Name'
+						onChange={handleChange}
+					/>
+					<Label htmlFor='email'>Email</Label>
+					<Input
+						bsSize='sm'
+						type='email'
+						name='email'
+						value={editClerk.email}
+						placeholder='Enter Email'
+						onChange={handleChange}
+					/>
+					<Label htmlFor='phone'>Phone</Label>
+					<Input
+						bsSize='sm'
+						type='tel'
+						name='phone'
+						value={editClerk.phone}
+						placeholder='Enter Phone'
+						onChange={handleChange}
+					/>
+					<div style={{ margin: '3% auto' }}>
+						<Button color='success' size='sm'>
+							Submit
+						</Button>
+						<Button color='danger' size='sm' onClick={handleToggleClose}>
+							Cancel
+						</Button>
+					</div>
 				</form>
 			</div>
 		)

@@ -5,7 +5,7 @@ import App from './App';
 import { Router } from 'react-router'
 import { Provider } from 'react-redux'
 import store from './redux/reducers'
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { createBrowserHistory } from 'history'
 import reportWebVitals from './reportWebVitals';
 

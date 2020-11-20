@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import AdminEdit from '../../forms/userforms/AdminEdit'
 import { getUserById } from '../../../redux/actions'
 import AdminRemove from './AdminRemove'
+import {Col, Card, ButtonDropdown, CardText, DropdownItem, DropdownMenu, DropdownToggle, Modal, ModalBody} from 'reactstrap'
 
-const AdminCard = ({ name, email, user_id, role_id }) => {
+const AdminCard = ({ name, email, user_id, role_id, phone }) => {
 	const users = useSelector((state) => state.users)
 	const dispatch = useDispatch()
 	const [editAdmin, setEditAdmin] = useState({})
@@ -13,12 +14,14 @@ const AdminCard = ({ name, email, user_id, role_id }) => {
 	const [toggleTools, setToggleTools] = useState(false)
 
 
+
 	const toolToggle = () => {
 		dispatch(getUserById(user_id))
-		setToggleTools(!false)
-}
+		setToggleTools(!toggleTools)
+	}
 
-	const toggleEditClick = () => {
+	const toggleEditClick = (e) => {
+		e.preventDefault()
 		setEditAdmin(users)
 		setToggleEdit(!false)
 	}
@@ -27,40 +30,34 @@ const AdminCard = ({ name, email, user_id, role_id }) => {
 	}
 
 	return (
-		<section>
-			<div>
-				<p>
-					{name} <br /> {email} <br /> Admin Id:{role_id}
-				</p>
-				<button onClick={toolToggle}>Tools</button>
-				{toggleTools === !false ? (
-					<div>
-						<button onClick={toggleEditClick}>Edit</button>
-						<button onClick={verify}>Delete</button>
-					</div>
-				) : null}
-			</div>
+		<Col sm='12' lg='4'>
+			<Card body outline color='success' style={{ margin: '5%', backgroundColor: 'whitesmoke' }}>
+				<ButtonDropdown direction='right' size='sm' style={{ width: '5%', marginLeft:'90%'}} isOpen={toggleTools} toggle={toolToggle}>
+					<DropdownToggle color='success' style={{ display: 'flex', justifyContent: 'flex-end' }}>
+						<i className='fas fa-ellipsis-h' style={{ color: 'whitesmoke' }}></i>
+					</DropdownToggle>
+					<DropdownMenu>
+						<DropdownItem onClick={toggleEditClick}>Edit</DropdownItem>
+						<DropdownItem onClick={verify}>Delete</DropdownItem>
+					</DropdownMenu>
+				</ButtonDropdown>
+				<CardText style={{ color: '#28A745' }}>
+					{name} <br /> {email} <br /> {phone} <br /> Admin Id:{role_id}
+				</CardText>
+			</Card>
 
-			{toggleEdit === !false ? (
-				<AdminEdit
-					editAdmin={editAdmin}
-					setEditAdmin={setEditAdmin}
-					setToggleEdit={setToggleEdit}
-					user_id={user_id}
-					setToggleTools={setToggleTools}
-				/>
-			) : null}
+			<Modal isOpen={toggleEdit} toggle={toggleEditClick}>
+				<ModalBody>
+					<AdminEdit editAdmin={editAdmin} setEditAdmin={setEditAdmin} user_id={user_id} setToggleEdit={setToggleEdit} />
+				</ModalBody>
+			</Modal>
 
-			{toggleRemove === !false ? (
-				<AdminRemove
-					name={name}
-					setToggleRemove={setToggleRemove}
-					user_id={user_id}
-					role_id={role_id}
-					setToggleTools={setToggleTools}
-				/>
-			) : null}
-		</section>
+			<Modal isOpen={toggleRemove} toggle={verify}>
+				<ModalBody>
+					<AdminRemove name={name} user_id={user_id} role_id={role_id} setToggleRemove={setToggleRemove} />
+				</ModalBody>
+			</Modal>
+		</Col>
 	)
 }
 
