@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {addCurrentFlower} from '../../../redux/actions'
+import { addCurrentFlower} from '../../../redux/actions'
+import {Modal, ModalBody, Input, Label, Button} from 'reactstrap'
 
-const AddCurrentFlower = ({setStockToggle, setToggle }) => {
+const AddCurrentFlower = ({open, setStockToggle, setToggle }) => {
   const currentFlower = useSelector(state => state.flower)
-  const inStockFlower = useSelector((state) => state.stockFlower)
+  const stockedFlower = useSelector((state) => state.stockFlower)
   const [infused, setInfused] = useState({
     is_infused: false,
     name: currentFlower.name,
@@ -32,32 +33,47 @@ const AddCurrentFlower = ({setStockToggle, setToggle }) => {
   }
 
   return (
-    <div>
-      {inStockFlower.in_stock === "true" ? <h1>This Flower is Already In Stock</h1> :
-        <form onSubmit={submit}>
-          <label>
-            Is this batch infused?
-					<label htmlFor='yes'>
-              <input type='checkbox' onChange={handleChange} name='is_infused' value={true} />
-						Yes
-					</label>
-            <label htmlFor='yes'>
-              <input type='checkbox' onClick={handleChange} name='is_infused' value={false} />
-						No
-					</label>
-          </label>
-          <label>
-            Mark strain for Sale?
-					<label>
-              <input type='checkbox' onChange={handleChange} name='in_stock' value={true} />
-						Yes
-					</label>
-          </label>
-          <button>Add In Stock</button>
-        </form>
-      }
-				<button onClick={toggle}>Cancel</button>
-			</div>
+    <Modal isOpen={open}>
+				<ModalBody>
+					{stockedFlower.in_stock === 'true' ? (
+						<div>
+							<Button onClick={toggle} color='danger' size='sm' style={{ marginLeft: '90%' }}>
+								X
+							</Button>
+							<h2>This Flower is Already In Stock</h2>{' '}
+						</div>
+					) : (
+						<form onSubmit={submit}>
+							<h3> Is this batch infused? </h3>
+              <span style={{display:'flex'}}>
+							<Label htmlFor='is_infused' style={{ margin: '0 auto', display: 'flex', alignItems: 'center' }}>
+								Yes
+								<Input bsSize='sm' type='radio' onChange={handleChange} name='is_infused' value={true} />
+							</Label>
+
+							<Label htmlFor='is_infused' style={{ margin: '0 auto', display: 'flex', alignItems: 'center' }}>
+								No
+								<Input bsSize='sm' type='radio' onClick={handleChange} name='is_infused' value={false} />
+							</Label>
+</span>
+							  <h3> Mark strain for Sale?</h3>
+								<Label htmlFor='in_stock' style={{ margin: '0 auto', display: 'flex', alignItems: 'center' }}>Yes
+								<Input bsSize='sm' type='checkbox' onChange={handleChange} name='in_stock' value={true} />
+              </Label>
+
+
+							<div style={{ margin: '3% auto' }}>
+								<Button color='success' size='sm'>
+									Add In Stock
+								</Button>
+								<Button color='danger' size='sm' onClick={toggle}>
+									Cancel
+								</Button>
+							</div>
+						</form>
+					)}
+      </ModalBody>
+    </Modal>
 		)
 }
 

@@ -8,7 +8,7 @@
   border: 3px double #28A745;
   min-height: 5vh;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-evenly;
   font-size: calc(10px + 2vmin);
   color: green;
@@ -25,7 +25,6 @@
 .n-link{
   text-decoration: none;
   font-size: calc(10px + 2vmin);
-
   color:#28A745;
 }
 .n-link:hover {
@@ -39,9 +38,16 @@ form{
   margin: 1% auto;
   border: 5px double #28A745;
   padding: 1%;
+  color:#28A745;
+  background: whitesmoke;
 }
 
-
+h1, h2, h3{
+  color:#28A745;
+}
  .active{
    text-decoration: underline overline;
+   background: whitesmoke;
+   font-size: calc(10px + 2vmin);
+   color:#28A745;
  }

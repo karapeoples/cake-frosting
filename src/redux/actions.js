@@ -97,13 +97,13 @@ export const login = (credentials) => dispatch => {
       localStorage.setItem('role', res.data.user.role)
       if (res.data.user.role === 'patient') {
         localStorage.setItem('card', res.data.roleInfo.card)
-				history.push('/cart')
+				history.push('/products')
       }
       else if (res.data.user.role === 'admin') {
         history.push('/admin-tools')
       }
       else if (res.data.user.role === 'clerk') {
-        history.push('/')
+        history.push('/store-dash')
       }
     })
     .catch((err) => {
@@ -337,7 +337,7 @@ export const pickFlower = (id) => async dispatch => {
 			dispatch({ type: SET_ERROR, payload: err })
 		}
 		finally {
-			return dispatch({ type: GRAB_FLOWER_TO_REMOVE, payload: [...flowerToRemove] })
+			return dispatch({ type: GRAB_FLOWER_TO_REMOVE, payload:[...flowerToRemove] })
 		}
 	}
 	catch (err) {
