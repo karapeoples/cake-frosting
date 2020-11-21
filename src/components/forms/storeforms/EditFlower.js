@@ -1,6 +1,7 @@
-import React, { useState} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import {  useDispatch } from 'react-redux'
 import { updateFlower, flowerByName } from '../../../redux/actions'
+import {Modal, ModalBody, Input, Label, Button} from 'reactstrap'
 
 const typeOptions = [
 	'Choose an Option',
@@ -11,10 +12,13 @@ const typeOptions = [
 	'50/50 Hybrid',
 ]
 
-const EditFlower = ({ setToggle }) => {
-  const singleFlower = useSelector((state) => state.flower)
-  const [newFlower, setNewFlower] = useState(singleFlower)
+const EditFlower = ({open, setToggle, newFlower, setNewFlower }) => {
+
+
 	const dispatch = useDispatch()
+
+
+
 
 
 		const handleChange = (e) => {
@@ -33,30 +37,56 @@ const EditFlower = ({ setToggle }) => {
 		}
 
 		return (
-			<div>
-				<form onSubmit={handleSubmit}>
-					<label htmlFor='image'>Image</label>
-					<input type='url' placeholder='Enter an Image URL' name='image' value={newFlower.image} onChange={handleChange} />
-					<label htmlFor='name'>Strain Name</label>
-					<input type='text' name='name' value={newFlower.name} onChange={handleChange} placeholder='Enter Strain Name' />
-					<label htmlFor='type'>Type</label>
-					<select type='select' name='type' value={newFlower.type} onChange={handleChange}>
-						{typeOptions.map((option, index) => (
-							<option key={index}>{option}</option>
-						))}
-					</select>
-					<label htmlFor='thc'>THC %</label>
-					<input type='number' name='thc' value={newFlower.thc} onChange={handleChange} />
-					<label htmlFor='cbd'>CBD %</label>
-					<input type='number' name='cbd' value={newFlower.cbd} onChange={handleChange} />
-					<label htmlFor='terps'>Terps</label>
-					<input type='text' name='terps' value={newFlower.terps} onChange={handleChange} placeholder='Enter Terps' />
-					<label htmlFor='pricePerGram'>Price</label>
-					<input type='number' name='pricePerGram' value={newFlower.pricePerGram} onChange={handleChange} />
-					<button>Submit</button>
-				</form>
-				<button onClick={toggle}>Cancel</button>
-			</div>
+			<Modal isOpen={open} toggle={setToggle}>
+				<ModalBody>
+					<h3 style={{ marginLeft: '25%' }}>Edit Flower Info</h3>
+					<form onSubmit={handleSubmit}>
+						<Label htmlFor='image'>Image</Label>
+						<Input
+							bsSize='sm'
+							type='url'
+							placeholder='Enter an Image URL'
+							name='image'
+							value={newFlower.image}
+							onChange={handleChange}
+						/>
+						<Label htmlFor='name'>Strain Name</Label>
+						<Input
+							bsSize='sm'
+							type='text'
+							name='name'
+							value={newFlower.name}
+							onChange={handleChange}
+							placeholder='Enter Strain Name'
+						/>
+						<Label htmlFor='type'>Type</Label>
+						<Input bsSize='sm' type='select' name='type' value={newFlower.type} onChange={handleChange}>
+							{typeOptions.map((option, index) => (
+								<option key={index}>{option}</option>
+							))}
+						</Input>
+						<Label htmlFor='thc'>THC %</Label>
+						<Input bsSize='sm' type='number' name='thc' value={newFlower.thc} onChange={handleChange} />
+						<Label htmlFor='cbd'>CBD %</Label>
+						<Input bsSize='sm' type='number' name='cbd' value={newFlower.cbd} onChange={handleChange} />
+						<Label htmlFor='terps'>Terps</Label>
+						<Input
+							bsSize='sm'
+							type='text'
+							name='terps'
+							value={newFlower.terps}
+							onChange={handleChange}
+							placeholder='Enter Terps'
+						/>
+						<Label htmlFor='pricePerGram'>Price Per Gram</Label>
+						<Input bsSize='sm' type='number' name='pricePerGram' value={newFlower.pricePerGram} onChange={handleChange} />
+						<div style={{ margin: '3% auto' }}>
+							<Button color='success' size='sm'>Submit</Button>
+							<Button color='danger' size='sm' onClick={toggle}>Cancel</Button>
+						</div>
+					</form>
+				</ModalBody>
+			</Modal>
 		)
 }
 

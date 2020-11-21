@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import {getAllFlowers, getCompanyPR} from '../../../redux/actions'
+import { getAllFlowers, getCompanyPR } from '../../../redux/actions'
+import StoreNav from './StoreNav'
 import AddFlower from '../../forms/storeforms/AddFlower'
 import AddCompanyPreRoll from '../../forms/storeforms/AddCompanyPreRoll.js'
 import CompanyPRCard from './CompanyPRCard'
 import FlowerProductCard from './FlowerProductCard'
+import {Button} from 'reactstrap'
 
 const FormCenter = () => {
   const dispatch = useDispatch()
@@ -17,15 +19,15 @@ const FormCenter = () => {
 
 
   const flowerSectionToggle = () => {
-    flower === false ? setFlower(!false) : setFlower(false)
-    setPreRoll(false)
+		setFlower(!flower)
+		setPreRoll(false)
 }
   const companyPRToggle = () => {
-    preRoll === false ? setPreRoll(!false) : setPreRoll(false)
     setFlower(false)
+		setPreRoll(!preRoll)
 }
 const flowerAddToggle = () => {
-	addFlowerForm === false ? setAddFlowerForm(!false) : setAddFlowerForm(false)
+	setAddFlowerForm(!addFlowerForm)
 }
 const preRollAddToggle = () => {
 	addPreRollForm === false ? setAddPreRollForm(!false) : setAddPreRollForm(false)
@@ -42,28 +44,44 @@ const preRollProductToggle = () => {
 
   return (
 			<div>
-				<section>
-					<button onClick={flowerSectionToggle}>Flower & In House Toggle</button>
-					{flower === !false ? (
-						<div>
-							<button onClick={flowerAddToggle}>Add New Flower</button>
-							{addFlowerForm === !false ? <AddFlower setToggle={setAddFlowerForm} /> : null}
-							<button onClick={flowerProductToggle}>Current Product Tools</button>
-							{flowerProduct === !false ? <FlowerProductCard setToggle={setFlowerProduct} /> : null}
-						</div>
-					) : null}
-				</section>
-				<section>
-					<button onClick={companyPRToggle}>Company Pre Roll</button>
-					{preRoll === false ? null : (
-						<div>
-							<button onClick={preRollAddToggle}>Add New Company PreRoll</button>
-							{addPreRollForm === !false ? <AddCompanyPreRoll setToggle={setAddPreRollForm} /> : null}
-							<button onClick={preRollProductToggle}>Current Product Tools</button>
-							{preRollProduct === !false ? <CompanyPRCard setToggle={setPreRollProduct} /> : null}
-					</div>
-				)}
-				</section>
+				<StoreNav />
+				<div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+					<section style={{width: "50%"}}>
+						<span onClick={flowerSectionToggle} className={flower === false ? 'n-link' : 'active'}>
+							Flower & In House PreRolls
+						</span>
+						{flower === !false ? (
+							<div style={{ margin: '5%', display: 'flex', justifyContent: 'space-evenly' }}>
+								<Button color='success' size='sm' onClick={flowerAddToggle}>
+									Add New Flower
+								</Button>
+							{addFlowerForm === !false ? <AddFlower open={addFlowerForm} setToggle={setAddFlowerForm} /> : null}
+								<Button color='success' size='sm' onClick={flowerProductToggle}>
+								Stock Tools
+								</Button>
+							</div>
+						) : null}<div>
+								{flowerProduct === !false ? <FlowerProductCard setToggle={setFlowerProduct} />: null}
+							</div>
+					</section>
+					<section style={{width: '50%'}}>
+						<span onClick={companyPRToggle} className={preRoll === false ? 'n-link' : 'active'}>
+							Company PreRolls
+						</span>
+						{preRoll === false ? null : (
+							<div style={{ margin: '5%', display: 'flex', justifyContent: 'space-evenly' }}>
+								<Button color='success' size='sm' onClick={preRollAddToggle}>
+									Add New PreRoll
+								</Button>
+								{addPreRollForm === !false ? <AddCompanyPreRoll setToggle={setAddPreRollForm} /> : null}
+								<Button color='success' size='sm' onClick={preRollProductToggle}>
+									Stock Tools
+								</Button>
+								{preRollProduct === !false ? <CompanyPRCard setToggle={setPreRollProduct} /> : null}
+							</div>
+						)}
+					</section>
+				</div>
 			</div>
 		)
 }
