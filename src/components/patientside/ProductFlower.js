@@ -18,11 +18,11 @@ const ProductFlower = () => {
 							outline
 							color='success'
 							style={{ height: '500px', margin: '2%', color: '#28A745', backgroundColor: 'whitesmoke' }}>
-							<div>
+							<div style={{margin: '2%'}}>
 								<CardImg
 									src={flower.image}
 									alt='bud'
-									style={{ display: 'block', width: '75%', height: '50%', margin: '0% auto', padding: '1%' }}
+									style={{ display: 'block', width: '75%', height: '50%', margin: '0% auto' }}
 								/>
 							</div>
 							<CardBody>
