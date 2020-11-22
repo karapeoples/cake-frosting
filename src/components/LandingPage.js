@@ -22,6 +22,7 @@ const LandingPage = () => {
 
 	useEffect(() => {
 		setLegal(!legal)
+		//eslint-disable-next-line
 	}, [setLegal])
 	return (
 		<div>
