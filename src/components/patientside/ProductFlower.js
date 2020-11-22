@@ -14,12 +14,15 @@ const ProductFlower = () => {
 			<Row>
 				{stock.map((flower, i) => (
 					<Col lg='4' sm='12' key={flower.id}>
-						<Card outline color='success' style={{height:'500px', margin: '2%', color: '#28A745', backgroundColor: 'whitesmoke' }}>
+						<Card
+							outline
+							color='success'
+							style={{ height: '500px', margin: '2%', color: '#28A745', backgroundColor: 'whitesmoke' }}>
 							<div>
 								<CardImg
 									src={flower.image}
 									alt='bud'
-									style={{ display: 'block', width: '75%', height: '50%', margin: '2% auto' }}
+									style={{ display: 'block', width: '75%', height: '50%', margin: '0% auto', padding: '1%' }}
 								/>
 							</div>
 							<CardBody>
