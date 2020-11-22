@@ -10,6 +10,6 @@ export const axiosWithAuth = () => {
 			Authorization: token,
 			role,
 		},
-		baseURL: 'http://localhost:4994/api',
+		baseURL: 'https://turn-cake.herokuapp.com/api',
 	})
 }
