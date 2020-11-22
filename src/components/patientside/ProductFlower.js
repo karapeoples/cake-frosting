@@ -18,6 +18,7 @@ const ProductFlower = () => {
 							outline
 							color='success'
 							style={{ height: '500px', margin: '2%', color: '#28A745', backgroundColor: 'whitesmoke' }}>
+							<CardBody>
 							<div style={{margin: '2%'}}>
 								<CardImg
 									src={flower.image}
@@ -25,7 +26,7 @@ const ProductFlower = () => {
 									style={{ display: 'block', width: '75%', height: '50%', margin: '0% auto' }}
 								/>
 							</div>
-							<CardBody>
+
 								<h3>{flower.name}</h3>
 								<span>
 									THC: {flower.thc}% | CBD: {flower.cbd}% | TERPS: {flower.terps}%
