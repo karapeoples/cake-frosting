@@ -42,7 +42,7 @@ form{
   background: whitesmoke;
 }
 
-h1, h2, h3{
+h1, h2, h3, li{
   color:#28A745;
 }
  .active{
@@ -50,4 +50,20 @@ h1, h2, h3{
    background: whitesmoke;
    font-size: calc(10px + 2vmin);
    color:#28A745;
+ }
+.form-center{
+  display: flex;
+  justify-content:space-evenly
+}
+
+ @media only screen and (max-width: 500px){
+   .form-center{
+     display: flex;
+     flex-direction: column;
+     width: 100%;
+   }
+   .form-center section{
+     width: 100%;
+     margin: 0 auto;
+   }
  }

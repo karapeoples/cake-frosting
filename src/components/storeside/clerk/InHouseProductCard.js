@@ -20,7 +20,7 @@ const InHouseProductCard = () => {
   const [addPreRoll, setAddPreRoll]= useState(false)
   const [addFlower, setAddFlower]= useState(false)
 
-  console.log('The Local Flower', newFlower)
+
   const editDDToggle = () => {
     setEdit(!false)
     setPreRoll(false)
@@ -42,6 +42,12 @@ const InHouseProductCard = () => {
    setStock(!false)
    setPreRoll(false)
    setEdit(false)
+ }
+
+  const openPreRollToggle = () => {
+  setPreRoll(!false)
+  setStock(false)
+  setEdit(false)
  }
   const preRollToggle =()=>{
    setPreRoll(!false)
@@ -66,11 +72,27 @@ const InHouseProductCard = () => {
     dispatch(getCurrentPRById(currentPR[0].preRoll_id))
   }
 
-  const setDelete = () => {
+  const setOpenDelete = () => {
     setConfirm(!false)
   }
-  const setDeletePR = () => {
+  const setDelete = () => {
+    if (currentFlower.length === 0)
+      alert('That Flower is not in Stock')
+    else {
+      setOpenDelete()
+    }
+
+  }
+  const setOpenDeletePR = ()=>{
     setConfirmPR(!false)
+  }
+  const setDeletePR = () => {
+    if (currentPR.length === 0) {
+      alert('That PreRoll is not in Stock')
+    }
+    else {
+      setOpenDeletePR()
+    }
   }
 
   const submit = () => {
@@ -95,7 +117,11 @@ const InHouseProductCard = () => {
 		<Col lg='12'>
 			<Card outline color='success' style={{ color: '#28A745', backgroundColor: 'whitesmoke' }}>
 				<div style={{ margin: '0 auto' }}>
-					<CardImg src={singleFlower.image} alt='Strain Bud' style={{ display: 'block', width: '250px', height: '250px' }} />
+					<CardImg
+						src={singleFlower.image}
+						alt='Strain Bud'
+						style={{ display: 'block', width: '75%', height: '50%', margin: '0 auto' }}
+					/>
 				</div>
 				<h3>{singleFlower.name}</h3>
 				<CardBody>
@@ -114,6 +140,7 @@ const InHouseProductCard = () => {
 							<DropdownToggle onClick={editToggle} split color='success' size='sm' />
 							<EditFlower open={edit} setToggle={setEdit} newFlower={newFlower} setNewFlower={setNewFlower} />
 						</ButtonDropdown>
+
 						<ButtonDropdown isOpen={stock} toggle={stockOpen}>
 							<Button onClick={stockToggle} color='success' size='sm'>
 								Current Stock
@@ -123,7 +150,7 @@ const InHouseProductCard = () => {
 								<DropdownItem onClick={addFlowerToggle}>Add</DropdownItem>
 								<AddCurrentFlower open={addFlower} setStockToggle={setStock} setToggle={setAddFlower} />
 								<DropdownItem onClick={setDelete}>Delete</DropdownItem>
-								<Modal isOpen={confirm} toggle={setDelete}>
+								<Modal isOpen={confirm} toggle={setOpenDelete}>
 									<ModalBody>
 										<Alert color='warning'>
 											<b>
@@ -143,25 +170,34 @@ const InHouseProductCard = () => {
 							</DropdownMenu>
 						</ButtonDropdown>
 
-
-
-{/* ####STYLE HERE NEXT##### */}
-						<Button color='success' size='sm' onClick={preRollToggle}>
-							InHouse PreRoll
-						</Button>
-						{preRoll === false ? null : (
-							<div>
-								<button onClick={addPreRollToggle}>Add</button>
-								{addPreRoll === false ? null : <AddCurrentPreRoll setPRStockToggle={setPreRoll} setToggle={setAddPreRoll} />}
-								<button onClick={setDeletePR}>Delete</button>
-								{confirmPR === false ? null : (
-									<div>
-										<button onClick={submitPR}>Yes</button>
-										<button onClick={noPR}>No</button>
-									</div>
-								)}
-							</div>
-						)}
+						<ButtonDropdown isOpen={preRoll} toggle={openPreRollToggle}>
+							<Button color='success' size='sm' onClick={preRollToggle}>
+								InHouse PreRoll
+							</Button>
+							<DropdownToggle split color='success' onClick={preRollToggle} />
+							<DropdownMenu>
+								<DropdownItem onClick={addPreRollToggle}>Add</DropdownItem>
+								<AddCurrentPreRoll open={addPreRoll} setPRStockToggle={setPreRoll} setToggle={setAddPreRoll} />
+								<DropdownItem onClick={setDeletePR}>Delete</DropdownItem>
+								<Modal isOpen={confirmPR} toggle={setOpenDeletePR}>
+									<ModalBody>
+										<Alert color='warning'>
+											<b>
+												You are removing {singleFlower.name} from InHouse PreRolls!
+												<br />
+												Are you sure?
+											</b>
+										</Alert>
+										<Button color='success' size='sm' onClick={submitPR}>
+											Yes
+										</Button>
+										<Button color='danger' size='sm' onClick={noPR}>
+											No
+										</Button>
+									</ModalBody>
+								</Modal>
+							</DropdownMenu>
+						</ButtonDropdown>
 					</ButtonGroup>
 				</CardBody>
 			</Card>

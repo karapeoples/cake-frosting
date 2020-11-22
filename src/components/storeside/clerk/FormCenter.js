@@ -45,7 +45,7 @@ const preRollProductToggle = () => {
   return (
 			<div>
 				<StoreNav />
-				<div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+				<div className='form-center'>
 					<section style={{width: "50%"}}>
 						<span onClick={flowerSectionToggle} className={flower === false ? 'n-link' : 'active'}>
 							Flower & In House PreRolls
@@ -60,26 +60,31 @@ const preRollProductToggle = () => {
 								Stock Tools
 								</Button>
 							</div>
-						) : null}<div>
+					) : null}
+					<div>
 								{flowerProduct === !false ? <FlowerProductCard setToggle={setFlowerProduct} />: null}
 							</div>
-					</section>
+				</section>
+
+
 					<section style={{width: '50%'}}>
 						<span onClick={companyPRToggle} className={preRoll === false ? 'n-link' : 'active'}>
 							Company PreRolls
 						</span>
-						{preRoll === false ? null : (
-							<div style={{ margin: '5%', display: 'flex', justifyContent: 'space-evenly' }}>
-								<Button color='success' size='sm' onClick={preRollAddToggle}>
-									Add New PreRoll
+					{preRoll === !false ? (
+						<div style={{ margin: '5%', display: 'flex', justifyContent: 'space-evenly' }}>
+							<Button color='success' size='sm' onClick={preRollAddToggle}>
+								Add New PreRoll
 								</Button>
-								{addPreRollForm === !false ? <AddCompanyPreRoll setToggle={setAddPreRollForm} /> : null}
-								<Button color='success' size='sm' onClick={preRollProductToggle}>
-									Stock Tools
+							{addPreRollForm === !false ? <AddCompanyPreRoll open={addPreRollForm} setToggle={setAddPreRollForm} /> : null}
+							<Button color='success' size='sm' onClick={preRollProductToggle}>
+								Stock Tools
 								</Button>
+							</div>
+					): null }
+							<div>
 								{preRollProduct === !false ? <CompanyPRCard setToggle={setPreRollProduct} /> : null}
 							</div>
-						)}
 					</section>
 				</div>
 			</div>

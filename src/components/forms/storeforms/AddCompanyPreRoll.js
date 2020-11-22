@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addCompanyPR } from '../../../redux/actions'
+import { Button, Modal, ModalBody, Input, Label } from 'reactstrap'
 
 const typeOptions = [
 	'Choose an Option',
@@ -12,7 +13,7 @@ const typeOptions = [
 ]
 
 
-const AddCompanyPreRoll = ({ setToggle }) => {
+const AddCompanyPreRoll = ({open, setToggle }) => {
   const prObject = {
 			image: '',
       name: '',
@@ -40,32 +41,37 @@ const toggle = () => {
 }
 
   return (
-			<div>
+			<Modal isOpen={open} toggle={setToggle}>
+			<ModalBody>
+				<h3 style={{ marginLeft: '25%' }}>Add a New PreRoll</h3>
 				<form onSubmit={handleSubmit}>
-					<label htmlFor='image'>Image</label>
-					<input type='url' placeholder='Enter an Image URL' name='image' value={pr.image} onChange={handleChange} />
-					<label htmlFor='name'>Pre-Roll Name</label>
-					<input type='text' name='name' value={pr.name} onChange={handleChange} placeholder='Enter Strain Name' />
-					<label htmlFor='company'>Company Name</label>
-					<input type='text' name='company' value={pr.company} onChange={handleChange} placeholder='Enter Company Name' />
-					<label htmlFor='type'>Type</label>
-					<select type='select' name='type' value={pr.type} onChange={handleChange}>
+					<Label htmlFor='image'>Image</Label>
+					<Input bsSize='sm' type='url' placeholder='Enter an Image URL' name='image' value={pr.image} onChange={handleChange} />
+					<Label htmlFor='name'>Pre-Roll Name</Label>
+					<Input bsSize='sm' type='text' name='name' value={pr.name} onChange={handleChange} placeholder='Enter Strain Name' />
+					<Label htmlFor='company'>Company Name</Label>
+					<Input bsSize='sm' type='text' name='company' value={pr.company} onChange={handleChange} placeholder='Enter Company Name' />
+					<Label htmlFor='type'>Type</Label>
+					<Input bsSize='sm' type='select' name='type' value={pr.type} onChange={handleChange}>
 						{typeOptions.map((option, index) => (
 							<option key={index}>{option}</option>
 						))}
-					</select>
-					<label htmlFor='thc'>THC %</label>
-					<input type='number' name='thc' value={pr.thc} onChange={handleChange} />
-					<label htmlFor='cbd'>CBD %</label>
-					<input type='number' name='cbd' value={pr.cbd} onChange={handleChange} />
-					<label htmlFor='terps'>Terps</label>
-					<input type='text' name='terps' value={pr.terps} onChange={handleChange} placeholder='Enter Terps' />
-					<label htmlFor='price'>Price</label>
-					<input type='number' name='price' value={pr.price} onChange={handleChange} />
-					<button>Submit</button>
+					</Input>
+					<Label htmlFor='thc'>THC %</Label>
+					<Input bsSize='sm' type='number' name='thc' value={pr.thc} onChange={handleChange} />
+					<Label htmlFor='cbd'>CBD %</Label>
+					<Input bsSize='sm' type='number' name='cbd' value={pr.cbd} onChange={handleChange} />
+					<Label htmlFor='terps'>Terps</Label>
+					<Input bsSize='sm' type='text' name='terps' value={pr.terps} onChange={handleChange} placeholder='Enter Terps' />
+					<Label htmlFor='price'>Price</Label>
+					<Input bsSize='sm' type='number' name='price' value={pr.price} onChange={handleChange} />
+					<div style={{ margin: '3% auto' }}>
+						<Button color='success' size='sm'>Submit</Button>
+						<Button color='danger' size='sm' onClick={toggle}>Cancel</Button>
+					</div>
 				</form>
-				<button onClick={toggle}>Cancel</button>
-			</div>
+			</ModalBody>
+		</Modal>
 		)
 }
 
