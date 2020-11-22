@@ -15,7 +15,7 @@ const ProductPreRoll = () => {
 			<Row>
 				{companyStock.map((singlePR, i) => (
 					<Col Col lg='4' sm='12' key={singlePR.id}>
-						<Card outline color='success' style={{ margin: '2%', color: '#28A745', backgroundColor: 'whitesmoke' }}>
+						<Card outline color='success' style={{height:'500px' margin: '2%', color: '#28A745', backgroundColor: 'whitesmoke' }}>
 							<div>
 								<CardImg
 									src={singlePR.image}

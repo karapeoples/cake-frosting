@@ -14,7 +14,7 @@ const ProductFlower = () => {
 			<Row>
 				{stock.map((flower, i) => (
 					<Col lg='4' sm='12' key={flower.id}>
-						<Card outline color='success' style={{ margin: '2%', color: '#28A745', backgroundColor: 'whitesmoke' }}>
+						<Card outline color='success' style={{height:'500px', margin: '2%', color: '#28A745', backgroundColor: 'whitesmoke' }}>
 							<div>
 								<CardImg
 									src={flower.image}
