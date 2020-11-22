@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { preRollByName } from '../../../redux/actions'
 import CompanyProductCard from './CompanyProductCard'
+import { Button, Input } from 'reactstrap'
 
 const CompanyPRCard = ({setToggle}) => {
 	const preRollName = useSelector((state) => state.companyPRS)
@@ -31,20 +32,26 @@ const CompanyPRCard = ({setToggle}) => {
 		<div>
 			<section>
 				<form onSubmit={select}>
-					<select onClick={handleChange} onChange={handleChange} type='select' name='search' value={search}>
+					<Input bsSize='sm' onClick={handleChange} onChange={handleChange} type='select' name='search' value={search}>
 						{preRollName.map((pr, i) => {
 							return <option key={i}>{pr.name}</option>
 						})}
-					</select>
-					<button>Select</button>
+					</Input>
+					<div style={{ margin: '3% auto' }}>
+						<Button color='success' size='sm'>
+							Select
+						</Button>
+						<Button color='danger' size='sm' onClick={cancel}>
+							Cancel
+						</Button>
+					</div>
 				</form>
 			</section>
-			{toggleProduct === !false ? (
+			{toggleProduct === !false ?
 				<section>
 					<CompanyProductCard />
 				</section>
-			) : null}
-			<button onClick={cancel}>Cancel</button>
+			 : null}
 		</div>
 	)
 }

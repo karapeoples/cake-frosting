@@ -1,7 +1,7 @@
 import React, { useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCurrentFlower} from '../../../redux/actions'
-import {Modal, ModalBody, Input, Label, Button} from 'reactstrap'
+import {Modal, ModalBody, Input, Label, Button, Alert} from 'reactstrap'
 
 const AddCurrentFlower = ({open, setStockToggle, setToggle }) => {
   const currentFlower = useSelector(state => state.flower)
@@ -33,34 +33,38 @@ const AddCurrentFlower = ({open, setStockToggle, setToggle }) => {
   }
 
   return (
-    <Modal isOpen={open}>
+			<Modal isOpen={open}>
 				<ModalBody>
 					{stockedFlower.in_stock === 'true' ? (
 						<div>
 							<Button onClick={toggle} color='danger' size='sm' style={{ marginLeft: '90%' }}>
 								X
 							</Button>
-							<h2>This Flower is Already In Stock</h2>{' '}
+							<Alert color='success' style={{width: '75%', margin: '0 auto'}}>
+								<b>
+										The Flower <em style={{ fontSize: '125%' }}>{stockedFlower.name}</em> is Already In Stock!!
+								</b>
+							</Alert>
 						</div>
 					) : (
 						<form onSubmit={submit}>
 							<h3> Is this batch infused? </h3>
-              <span style={{display:'flex'}}>
-							<Label htmlFor='is_infused' style={{ margin: '0 auto', display: 'flex', alignItems: 'center' }}>
+							<span style={{ display: 'flex' }}>
+								<Label htmlFor='is_infused' style={{ margin: '0 auto', display: 'flex', alignItems: 'center' }}>
+									Yes
+									<Input bsSize='sm' type='radio' onChange={handleChange} name='is_infused' value={true} />
+								</Label>
+
+								<Label htmlFor='is_infused' style={{ margin: '0 auto', display: 'flex', alignItems: 'center' }}>
+									No
+									<Input bsSize='sm' type='radio' onClick={handleChange} name='is_infused' value={false} />
+								</Label>
+							</span>
+							<h3> Mark strain for Sale?</h3>
+							<Label htmlFor='in_stock' style={{ margin: '0 auto', display: 'flex', alignItems: 'center' }}>
 								Yes
-								<Input bsSize='sm' type='radio' onChange={handleChange} name='is_infused' value={true} />
-							</Label>
-
-							<Label htmlFor='is_infused' style={{ margin: '0 auto', display: 'flex', alignItems: 'center' }}>
-								No
-								<Input bsSize='sm' type='radio' onClick={handleChange} name='is_infused' value={false} />
-							</Label>
-</span>
-							  <h3> Mark strain for Sale?</h3>
-								<Label htmlFor='in_stock' style={{ margin: '0 auto', display: 'flex', alignItems: 'center' }}>Yes
 								<Input bsSize='sm' type='checkbox' onChange={handleChange} name='in_stock' value={true} />
-              </Label>
-
+							</Label>
 
 							<div style={{ margin: '3% auto' }}>
 								<Button color='success' size='sm'>
@@ -72,8 +76,8 @@ const AddCurrentFlower = ({open, setStockToggle, setToggle }) => {
 							</div>
 						</form>
 					)}
-      </ModalBody>
-    </Modal>
+				</ModalBody>
+			</Modal>
 		)
 }
 
