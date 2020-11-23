@@ -15,15 +15,18 @@ const ProductPreRoll = () => {
 			<Row>
 				{companyStock.map((singlePR, i) => (
 					<Col Col lg='4' sm='12' key={singlePR.id}>
-						<Card outline color='success' style={{ height: '750px', margin: '2%', color: '#28A745', backgroundColor: 'whitesmoke' }}>
+						<Card
+							outline
+							color='success'
+							style={{ margin: '2%', color: '#28A745', backgroundColor: 'whitesmoke' }}>
 							<CardBody>
-							<div style={{margin: '2%'}}>
-								<CardImg
-									src={`${singlePR.image}/318x180`}
-									alt='Company Pre-Roll'
-									style={{ display:'block', width: '75%', height: '200px', margin: '0 auto' }}
-								/>
-							</div>
+								<div style={{ margin: '2%' }}>
+									<CardImg
+										src={singlePR.image}
+										alt='Company Pre-Roll'
+										style={{ display: 'block', width: '318px', height: '180px', margin: '0% auto' }}
+									/>
+								</div>
 								<h3>
 									PreRoll Name:
 									<br />
@@ -33,9 +36,11 @@ const ProductPreRoll = () => {
 									Company Name:
 									<br />
 									{singlePR.company}
-                </h3>
-                <span>
-								THC: {singlePR.thc}% | CBD: {singlePR.cbd}% | TERPS: {singlePR.terps}%</span><p>Type:{singlePR.type}</p>
+								</h3>
+								<span>
+									THC: {singlePR.thc}% | CBD: {singlePR.cbd}% | TERPS: {singlePR.terps}%
+								</span>
+								<p>Type:{singlePR.type}</p>
 								{singlePR.is_infused === 'true' ? <p>Infused: Yes</p> : <p>Infused: No</p>}
 								<p> ${singlePR.price}</p>
 							</CardBody>
