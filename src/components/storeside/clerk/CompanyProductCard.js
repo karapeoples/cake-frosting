@@ -81,11 +81,11 @@ const CompanyProductCard = () => {
   return (
 			<Col lg='12'>
 				<Card outline color='success' style={{ color: '#28A745', backgroundColor: 'whitesmoke' }}>
-					<div style={{ margin: '0 auto' }}>
+					<div style={{ margin: '2%' }}>
 						<CardImg
 							src={singlePR.image}
 							alt='Company Pre-Roll'
-							style={{ display: 'block', width: '75%', height: '50%', margin: '0 auto' }}
+							style={{ display: 'block', width: '318px', height: '180px', margin: '0% auto' }}
 						/>
 					</div>
 					<h3>
