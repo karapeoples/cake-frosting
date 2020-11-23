@@ -1,5 +1,6 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import { history } from '../index'
+import axios from 'axios'
 
 
 export const SET_ERROR = 'SET_ERROR'
@@ -293,8 +294,8 @@ export const updateFlower = (changes) => dispatch => {
 
 //IN STOCK FLOWERS
 export const getCurrentFlower = () => dispatch => {
-	axiosWithAuth()
-		.get('/strain/flower_stock')
+	axios
+		.get('https://turn-cake.herokuapp.com/api/stock/flower_stock')
 		.then((res) => {
 			dispatch({ type: GET_STOCK, payload: res.data })
 		})
@@ -359,8 +360,8 @@ export const removeCurrentFlower = (id) => dispatch => {
 //IN HOUSE PRE ROLLS
 
 export const getCurrentPR = () => (dispatch) => {
-	axiosWithAuth()
-		.get('/strain/preRoll')
+	axios
+		.get('https://turn-cake.herokuapp.com/api/stock/preRoll')
 		.then((res) => {
 			dispatch({ type: GET_STOCK_PR, payload: res.data })
 		})
@@ -477,8 +478,8 @@ export const updateCompanyPR = (changes) => (dispatch) => {
 
 //IN STOCK Company PreRolls
 export const getCurrentCompanyPR = () => (dispatch) => {
-	axiosWithAuth()
-		.get('/pr/pr_stock')
+	axios
+		.get('https://turn-cake.herokuapp.com/api/stock/pr_stock')
 		.then((res) => {
 			dispatch({ type: GET_PR_STOCK, payload: res.data })
 		})

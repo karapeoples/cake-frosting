@@ -7,7 +7,7 @@ import ProductPreRoll from './ProductPreRoll'
 const Products = () => {
   return (
 			<div>
-				<div className='App-header'>WELCOME TO STORE NAME HERE</div>
+				<div className='App-header'><h1>WELCOME TO STORE NAME HERE</h1></div>
 				<div className='nav'>
 					<NavLink to='/products/flowers' className='n-link'>
 						Flowers

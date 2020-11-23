@@ -14,7 +14,7 @@ const ProductInHouse = () => {
       <h1>$5 PreRolls</h1>
       {inHouse.map((pr, i) => (
         <ul key={pr.id}>
-          <li>{pr.name} ~~ {pr.is_infused === 'true'? 'Infused: Yes' : 'Infused: No' }</li>
+          <h5><li>{pr.name} ~~ {pr.is_infused === 'true' ? 'Infused: Yes' : 'Infused: No'}~~ Type:{pr.type}</li></h5>
         </ul>
       ))}
     </div>

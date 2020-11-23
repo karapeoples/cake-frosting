@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { history } from '../index'
+import LandingPic from '../images/open_landing.webp'
 import {Modal, ModalBody, Button} from 'reactstrap'
 
 const LandingPage = () => {
@@ -30,11 +31,11 @@ const LandingPage = () => {
 			<div>
 				<div>
 					<img
-						src='https://i.cbc.ca/1.4083484.1541030505!/fileImage/httpImage/image.JPG_gen/derivatives/16x9_780/pot-shop.JPG'
+						src={LandingPic}
 						alt='store'
 					/>
 				</div>
-				<div className='App-header'>WELCOME TO STORE NAME HERE</div>
+				<div className='App-header'><h1>WELCOME TO STORE NAME HERE</h1></div>
 				<Modal isOpen={legal} toggle={toggle}>
 				<ModalBody style={{ margin: '3% auto' }}>
 					<h3>Are you 21 or Over?</h3>
