@@ -11,12 +11,12 @@ const ProductInHouse = () => {
   },[dispatch])
   return (
 			<div>
-				<h1 style={{ backgroundColor: 'whitesmoke' }}>$5 PreRolls</h1>
+				<h1>$5 PreRolls</h1>
 				{inHouse.map((pr, i) => (
 					<ul key={pr.id}>
-						<h5 style={{ backgroundColor: 'whitesmoke' }}>
+						<h5>
 							<li>
-								{pr.name} ~~ {pr.is_infused === 'true' ? 'Infused: Yes' : 'Infused: No'}~~ Type:{pr.type}
+								<b><em>{pr.name} ~~ {pr.is_infused === 'true' ? 'Infused: Yes' : 'Infused: No'}~~ Type:{pr.type}</em></b>
 							</li>
 						</h5>
 					</ul>
