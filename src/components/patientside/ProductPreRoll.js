@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCurrentCompanyPR } from '../../redux/actions'
-import { Col, Row, Card, CardBody, CardImg } from 'reactstrap'
+import { Col, Row, Card, CardBody, CardImg, Spinner } from 'reactstrap'
 
 const ProductPreRoll = () => {
   const companyStock = useSelector((state) => state.companyStock)
@@ -12,8 +12,9 @@ const ProductPreRoll = () => {
   }, [dispatch])
 
   return (
-			<Row>
-				{companyStock.map((singlePR, i) => (
+		<Row>
+			{companyStock.length === 0 ? <div style={{margin: '0 auto'}}><Spinner color='success' size='sm'/> <Spinner color='success' size='sm'/> <Spinner color='success' size='sm'/></div> :
+				companyStock.map((singlePR, i) => (
 					<Col Col lg='4' sm='12' key={singlePR.id}>
 						<Card
 							outline

@@ -35,13 +35,38 @@ const AdminRegister = () => {
 			<h3>Register a New Admin</h3>
 			<form onSubmit={handleSubmit}>
 				<Label htmlFor='fullName'>Full Name</Label>
-				<Input bsSize='sm' type='text' name='fullName' value={admin.fullName} placeholder='Enter Name' onChange={handleChange} />
+				<Input
+					required
+					bsSize='sm'
+					type='text'
+					name='fullName'
+					value={admin.fullName}
+					placeholder='Enter Name'
+					onChange={handleChange}
+				/>
 				<Label htmlFor='email'>Email</Label>
-				<Input bsSize='sm' type='email' name='email' value={admin.email} placeholder='Enter Email' onChange={handleChange} />
+				<Input
+					required
+					bsSize='sm'
+					type='email'
+					name='email'
+					value={admin.email}
+					placeholder='Enter Email'
+					onChange={handleChange}
+				/>
 				<Label htmlFor='tel'>Phone</Label>
-				<Input bsSize='sm' type='text' name='phone' value={admin.phone} placeholder='Enter Phone' onChange={handleChange} />
+				<Input
+					required
+					bsSize='sm'
+					type='text'
+					name='phone'
+					value={admin.phone}
+					placeholder='Enter Phone'
+					onChange={handleChange}
+				/>
 				<Label htmlFor='password'>Password</Label>
 				<Input
+					required
 					bsSize='sm'
 					type='password'
 					name='password'
@@ -50,7 +75,9 @@ const AdminRegister = () => {
 					onChange={handleChange}
 				/>
 				<div style={{ margin: '3% auto' }}>
-        <Button color='success' size='sm'>Submit</Button>
+					<Button color='success' size='sm'>
+						Submit
+					</Button>
 				</div>
 			</form>
 		</div>

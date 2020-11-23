@@ -28,23 +28,34 @@ const Login = () => {
   }
 
   return (
-		<div>
-			<h3>LogIn</h3>
+			<div>
+				<h3>LogIn</h3>
 				<form onSubmit={handleSubmit}>
 					<Label htmlFor='email'>Email</Label>
-					<Input bsSize='sm' type='text' name='email' value={creds.email} placeholder='Enter Email' onChange={handleChange} />
+					<Input
+						required
+						bsSize='sm'
+						type='text'
+						name='email'
+						value={creds.email}
+						placeholder='Enter Email'
+						onChange={handleChange}
+					/>
 					<Label htmlFor='password'>Password</Label>
 					<Input
-					bsSize='sm'
+						required
+						bsSize='sm'
 						type='password'
 						name='password'
 						value={creds.password}
 						placeholder='Enter A Password'
 						onChange={handleChange}
-				/>
-				<div style={{margin: '3% auto'}}>
-					<Button color='success' size='sm'>Submit</Button>
-				</div>
+					/>
+					<div style={{ margin: '3% auto' }}>
+						<Button color='success' size='sm'>
+							Submit
+						</Button>
+					</div>
 				</form>
 			</div>
 		)

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import {useSelector, useDispatch } from 'react-redux'
 import { registerClerk } from '../../../redux/actions'
-import { Label, Input, Button } from 'reactstrap'
+import { Label, Input, Button, Spinner } from 'reactstrap'
 
 const ClerkRegister = () => {
+	const success = useSelector((state) => state.addSuccess)
   const dispatch = useDispatch()
 	const [clerk, setClerk] = useState({
 		fullName: '',
@@ -36,6 +37,7 @@ const ClerkRegister = () => {
 			<form onSubmit={handleSubmit}>
 				<Label htmlFor='fullName'>Full Name</Label>
 				<Input
+					required
 					bsSize='sm'
 					type='text'
 					name='fullName'
@@ -45,6 +47,7 @@ const ClerkRegister = () => {
 				/>
 				<Label htmlFor='email'>Email</Label>
 				<Input
+					required
 					bsSize='sm'
 					type='email'
 					name='email'
@@ -53,9 +56,10 @@ const ClerkRegister = () => {
 					onChange={handleChange}
 				/>
 				<Label htmlFor='phone'>Phone</Label>
-				<Input bsSize='sm' type='tel' name='phone' value={clerk.phone} placeholder='Enter Phone' onChange={handleChange} />
+				<Input required bsSize='sm' type='tel' name='phone' value={clerk.phone} placeholder='Enter Phone' onChange={handleChange} />
 				<Label htmlFor='password'>Password</Label>
 				<Input
+					required
 					bsSize='sm'
 					type='password'
 					name='password'
@@ -64,7 +68,7 @@ const ClerkRegister = () => {
 					onChange={handleChange}
 				/>
 				<div style={{ margin: '3% auto' }}>
-					<Button color='success' size='sm'>
+						<Button color='success' size='sm'>
 						Submit
 					</Button>
 				</div>

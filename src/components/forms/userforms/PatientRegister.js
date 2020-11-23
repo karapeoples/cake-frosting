@@ -40,6 +40,7 @@ const PatientRegister = () => {
 			<form onSubmit={handleSubmit}>
 				<Label htmlFor='fullName'>Full Name</Label>
 				<Input
+					required
 					bsSize='sm'
 					type='text'
 					name='fullName'
@@ -49,6 +50,7 @@ const PatientRegister = () => {
 				/>
 				<Label htmlFor='email'>Email</Label>
 				<Input
+					required
 					bsSize='sm'
 					type='email'
 					name='email'
@@ -58,6 +60,7 @@ const PatientRegister = () => {
 				/>
 				<Label htmlFor='phone'>Phone</Label>
 				<Input
+					required
 					bsSize='sm'
 					type='tel'
 					name='phone'
@@ -67,6 +70,7 @@ const PatientRegister = () => {
 				/>
 				<Label htmlFor='password'>Password</Label>
 				<Input
+					required
 					bsSize='sm'
 					type='password'
 					name='password'
@@ -76,6 +80,7 @@ const PatientRegister = () => {
 				/>
 				<Label htmlFor='card'>Patient Card Number</Label>
 				<Input
+					required
 					bsSize='sm'
 					type='text'
 					name='card'

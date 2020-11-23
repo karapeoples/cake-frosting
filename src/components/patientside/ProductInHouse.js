@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCurrentPR } from '../../redux/actions'
+import {Spinner} from 'reactstrap'
 
 const ProductInHouse = () => {
   const inHouse = useSelector((state) => state.inHouse)
@@ -11,8 +12,9 @@ const ProductInHouse = () => {
   },[dispatch])
   return (
 			<div>
-				<h1>$5 PreRolls</h1>
-				{inHouse.map((pr, i) => (
+			<h1>$5 PreRolls</h1>
+			{inHouse.length === 0 ? <div style={{margin: '0 auto'}}><Spinner color='success' size='sm'/> <Spinner color='success' size='sm'/> <Spinner color='success' size='sm'/></div> :
+				inHouse.map((pr, i) => (
 					<ul key={pr.id}>
 						<h5>
 							<li>
