@@ -13,7 +13,7 @@ const LandingPage = () => {
 	}
 
 	const no = (e) => {
-    alert('You must be over 18 to view this site')
+    alert('You must be over 21 to view this site')
     localStorage.setItem('is_Legal', false)
 	}
 
