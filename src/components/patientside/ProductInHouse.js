@@ -10,15 +10,19 @@ const ProductInHouse = () => {
     dispatch(getCurrentPR())
   },[dispatch])
   return (
-    <div>
-      <h1>$5 PreRolls</h1>
-      {inHouse.map((pr, i) => (
-        <ul key={pr.id}>
-          <h5><li>{pr.name} ~~ {pr.is_infused === 'true' ? 'Infused: Yes' : 'Infused: No'}~~ Type:{pr.type}</li></h5>
-        </ul>
-      ))}
-    </div>
-  )
+			<div>
+				<h1 style={{ backgroundColor: 'whitesmoke' }}>$5 PreRolls</h1>
+				{inHouse.map((pr, i) => (
+					<ul key={pr.id}>
+						<h5 style={{ backgroundColor: 'whitesmoke' }}>
+							<li>
+								{pr.name} ~~ {pr.is_infused === 'true' ? 'Infused: Yes' : 'Infused: No'}~~ Type:{pr.type}
+							</li>
+						</h5>
+					</ul>
+				))}
+			</div>
+		)
 }
 
 export default ProductInHouse
