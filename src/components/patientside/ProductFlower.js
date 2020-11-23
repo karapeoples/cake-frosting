@@ -9,7 +9,8 @@ const ProductFlower = () => {
 
   useEffect(() => {
     dispatch(getCurrentFlower())
-  }, [dispatch])
+	}, [dispatch])
+
   return (
 			<Row>
 				{stock.map((flower, i) => (
@@ -23,7 +24,7 @@ const ProductFlower = () => {
 								<CardImg
 									src={flower.image}
 									alt='bud'
-									style={{ display: 'block', width: '75%', height: '50%', margin: '0% auto' }}
+									style={{ display: 'block', width: '75%', height: '250px', margin: '0% auto' }}
 								/>
 							</div>
 

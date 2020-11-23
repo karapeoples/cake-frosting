@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { history } from '../index'
 import {Modal, ModalBody, Button} from 'reactstrap'
 
-const LandingPage = () => {
+const LandingPage = async() => {
   const [legal, setLegal]= useState(false)
 	const yes = (e) => {
 		e.preventDefault()
-		localStorage.setItem('is_Legal', true)
+		await localStorage.setItem('is_Legal', true)
     history.push('/products')
     setLegal(true)
 	}
