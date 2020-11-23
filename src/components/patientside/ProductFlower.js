@@ -22,7 +22,7 @@ const ProductFlower = () => {
 							<CardBody>
 							<div style={{margin: '2%'}}>
 								<CardImg
-									src={flower.image}
+									src={`${flower.image}/318x180`}
 									alt='bud'
 									style={{ display: 'block', width: '75%', height: '250px', margin: '0% auto' }}
 								/>

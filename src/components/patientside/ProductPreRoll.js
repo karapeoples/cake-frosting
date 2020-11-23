@@ -19,7 +19,7 @@ const ProductPreRoll = () => {
 							<CardBody>
 							<div style={{margin: '2%'}}>
 								<CardImg
-									src={singlePR.image}
+									src={`${singlePR.image}/318x180`}
 									alt='Company Pre-Roll'
 									style={{ display:'block', width: '75%', height: '200px', margin: '0 auto' }}
 								/>
