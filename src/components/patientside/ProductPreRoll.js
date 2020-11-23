@@ -28,15 +28,15 @@ const ProductPreRoll = () => {
 									/>
 								</div>
 								<h3>
-									PreRoll Name:
+									Name:
 									<br />
 									{singlePR.name}
 								</h3>
-								<h3>
-									Company Name:
+								<h5>
+									Company:
 									<br />
 									{singlePR.company}
-								</h3>
+								</h5>
 								<span>
 									THC: {singlePR.thc}% | CBD: {singlePR.cbd}% | TERPS: {singlePR.terps}%
 								</span>

@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   font-family: 'Josefin Sans', sans-serif;
+  color: #28A745;
 }
 
 
@@ -12,7 +13,7 @@
   align-items: flex-end;
   justify-content: space-evenly;
   font-size: calc(10px + 2vmin);
-  color: green;
+  color: #28A745;
   margin: 1%;
   padding: 1%;
 }
@@ -43,7 +44,7 @@ form{
   background: whitesmoke;
 }
 
-h1, h2, h3, li{
+h1, h2, h3, h4,h5,h6 li{
   color:#28A745;
   font-family: 'Syncopate', sans-serif;
 }
