@@ -37,12 +37,12 @@ const CompanyPRCard = ({setToggle}) => {
 			<section>
 				<Modal isOpen={alertOpen} toggle={alertToggle}>
 					<ModalBody>
-						<div style={{ margin: '0 auto' }}>
+						<div >
 							<Button onClick={() => setAlertOpen(false)} color='danger' size='sm' style={{ marginLeft: '90%' }}>
 								X
 							</Button>
 							<Alert color='warning'>
-								<h1>Choose a PreRoll</h1>
+								<h1 style={{ margin: '0 auto' }}>Choose a PreRoll</h1>
 							</Alert>
 						</div>
 					</ModalBody>

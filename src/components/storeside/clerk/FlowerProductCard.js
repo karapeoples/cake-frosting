@@ -41,12 +41,12 @@ const FlowerProductCard = ({setToggle}) => {
 			<div>
 				<Modal isOpen={alertOpen} toggle={alertToggle}>
 					<ModalBody>
-						<div style={{ margin: '0 auto' }}>
+						<div >
 							<Button onClick={() => setAlertOpen(false)} color='danger' size='sm' style={{ marginLeft: '90%' }}>
 								X
 							</Button>
 							<Alert color='warning'>
-								<h1>Choose a Strain</h1>
+								<h1 style={{ margin: '0 auto' }}>Choose a Strain</h1>
 							</Alert>
 						</div>
 					</ModalBody>
