@@ -99,12 +99,15 @@ export const login = (credentials) => dispatch => {
       if (res.data.user.role === 'patient') {
         localStorage.setItem('card', res.data.roleInfo.card)
 				history.push('/products')
+				dispatch({type: POST_SUCCESS, payload: res.data.user.role})
       }
       else if (res.data.user.role === 'admin') {
-        history.push('/admin-tools')
+				history.push('/admin-tools')
+				dispatch({type: POST_SUCCESS, payload: res.data.user.role})
       }
       else if (res.data.user.role === 'clerk') {
-        history.push('/store-dash')
+				history.push('/store-dash')
+				dispatch({ type: POST_SUCCESS, payload: res.data.user.role })
       }
     })
     .catch((err) => {

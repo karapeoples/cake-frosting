@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCurrentCompanyPR } from '../../../redux/actions'
-import { Modal, ModalBody, Input, Label, Button, Alert } from 'reactstrap'
+import { Modal, ModalBody, Input, Label, Button, Alert, Spinner } from 'reactstrap'
 
 const AddCurrentCompanyPR = ({open, setStockToggle, setToggle }) => {
 
 const currentPR = useSelector((state) => state.companyPR)
-const inStockPR = useSelector((state) => state.companyStock)
+	const inStockPR = useSelector((state) => state.companyStock)
+	const [success, setSuccess]= useState(false)
 const [pr, setPR] = useState({
 	name: currentPR.name,
   in_stock: false,
@@ -25,14 +26,17 @@ const toggle = () => {
 
 const submit = (e) => {
 	e.preventDefault()
-	dispatch(addCurrentCompanyPR(pr))
+	setSuccess(true)
+	setTimeout(() =>{
+		dispatch(addCurrentCompanyPR(pr))
+	}, 1500)
 	setToggle(false)
 	setStockToggle(false)
 }
 
   return (
 			<Modal isOpen={open}>
-				<ModalBody>
+			<ModalBody>
 					{inStockPR.in_stock === 'true' ? (
 						<div>
 							<Button onClick={toggle} color='danger' size='sm' style={{ marginLeft: '90%' }}>
@@ -65,9 +69,15 @@ const submit = (e) => {
 							</Label>
 
 							<div style={{ margin: '3% auto' }}>
-								<Button color='success' size='sm'>
-									Add In Stock
-								</Button>
+								{success === false ? (
+									<Button color='success' size='sm'>
+										Submit
+									</Button>
+								) : (
+									<Button color='success' size='sm'>
+										Submit <Spinner size='sm' style={{ color: 'whitesmoke' }} />
+									</Button>
+								)}
 								<Button color='danger' size='sm' onClick={toggle}>
 									Cancel
 								</Button>

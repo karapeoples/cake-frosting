@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import {login} from '../../../redux/actions'
-import {Label, Button, Input} from 'reactstrap'
+import {Label, Button, Input, Spinner} from 'reactstrap'
 
 const Login = () => {
   const dispatch = useDispatch()
-
+	const [success, setSuccess] = useState(false)
   const [creds, setCreds]=useState({
     email:'',
     password:''
@@ -19,12 +19,16 @@ const Login = () => {
 		})
   }
   const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(login(creds))
-    setCreds({
+		e.preventDefault()
+		setSuccess(true)
+		setTimeout(() =>{
+			dispatch(login(creds))
+		}, 1500)
+		setCreds({
       email: '',
       password: '',
     })
+
   }
 
   return (
@@ -52,9 +56,16 @@ const Login = () => {
 						onChange={handleChange}
 					/>
 					<div style={{ margin: '3% auto' }}>
-						<Button color='success' size='sm'>
-							Submit
-						</Button>
+						{success === false ? (
+							<Button color='success' size='sm'>
+								Submit
+								</Button>
+						) : (
+							<Button color='success' size='sm'>
+								Submit <Spinner size='sm' style={{color: 'whitesmoke'}}/>
+							</Button>
+
+						)}
 					</div>
 				</form>
 			</div>

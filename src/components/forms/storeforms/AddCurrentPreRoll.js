@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCurrentPR } from '../../../redux/actions'
-import {Modal, ModalBody, Button, Label, Input, Alert} from 'reactstrap'
+import {Modal, ModalBody, Button, Label, Input, Alert, Spinner} from 'reactstrap'
 
 const AddCurrentPreRoll = ({ open, setPRStockToggle, setToggle }) => {
 
 const currentFlower = useSelector((state) => state.flower)
-const inStockPR = useSelector((state) => state.inHouse)
+	const inStockPR = useSelector((state) => state.inHouse)
+	const [success, setSuccess]= useState(false)
 const [pr, setPR] = useState({
 	name: currentFlower.name,
 	in_stock: false,
@@ -23,8 +24,11 @@ const handleChange = (e) => {
 			}
 
   const submit = (e) => {
-			e.preventDefault()
+		e.preventDefault()
+		setSuccess(true)
+		setTimeout(() =>{
 			dispatch(addCurrentPR(pr))
+		}, 1500)
 			setToggle(false)
 			setPRStockToggle(false)
 		}
@@ -51,9 +55,15 @@ const handleChange = (e) => {
 							</Label>
 
 							<div style={{ margin: '3% auto' }}>
-								<Button color='success' size='sm'>
-									Add In Stock
-								</Button>
+								{success === false ? (
+									<Button color='success' size='sm'>
+										Submit
+									</Button>
+								) : (
+									<Button color='success' size='sm'>
+										Submit <Spinner size='sm' style={{ color: 'whitesmoke' }} />
+									</Button>
+								)}
 								<Button color='danger' size='sm' onClick={toggle}>
 									Cancel
 								</Button>

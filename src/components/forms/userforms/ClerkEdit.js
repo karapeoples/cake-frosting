@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { updateUsers, getClerks } from '../../../redux/actions'
 import { useDispatch } from 'react-redux'
-import { Button, Label, Input } from 'reactstrap'
+import { Button, Label, Input, Spinner} from 'reactstrap'
 
-const ClerkEdit = ({editClerk, setEditClerk, setToggleEdit}) => {
+const ClerkEdit = ({ editClerk, setEditClerk, setToggleEdit }) => {
+	const [success, setSuccess]= useState(false)
   const dispatch = useDispatch()
 
   const handleToggleClose = (e) => {
@@ -12,9 +13,12 @@ const ClerkEdit = ({editClerk, setEditClerk, setToggleEdit}) => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(updateUsers(editClerk))
-    dispatch(getClerks())
+		e.preventDefault()
+		setSuccess(true)
+		setTimeout(() => {
+			dispatch(updateUsers(editClerk))
+    dispatch(getClerks())}, 1500)
+
     setToggleEdit(false)
   }
 
@@ -53,9 +57,15 @@ const ClerkEdit = ({editClerk, setEditClerk, setToggleEdit}) => {
 						onChange={handleChange}
 					/>
 					<div style={{ margin: '3% auto' }}>
-						<Button color='success' size='sm'>
-							Submit
-						</Button>
+						{success === false ? (
+							<Button color='success' size='sm'>
+								Submit
+							</Button>
+						) : (
+							<Button color='success' size='sm'>
+								Submit <Spinner size='sm' style={{ color: 'whitesmoke' }} />
+							</Button>
+						)}
 						<Button color='danger' size='sm' onClick={handleToggleClose}>
 							Cancel
 						</Button>

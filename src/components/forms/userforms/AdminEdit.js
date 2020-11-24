@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { updateUsers, getAdmins } from '../../../redux/actions'
 import { useDispatch } from 'react-redux'
-import {Button, Label, Input} from 'reactstrap'
+import {Button, Label, Input, Spinner} from 'reactstrap'
 
 const AdminEdit = ({ editAdmin, setEditAdmin, setToggleEdit }) => {
+	const  [success, setSuccess] = useState(false)
 	const dispatch = useDispatch()
 
 
@@ -14,8 +15,11 @@ const AdminEdit = ({ editAdmin, setEditAdmin, setToggleEdit }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
+		setSuccess(true)
+		setTimeout(()=>{
 		dispatch(updateUsers(editAdmin))
 		dispatch(getAdmins())
+	}, 1500)
 		setToggleEdit(false)
 	}
 
@@ -54,8 +58,16 @@ const AdminEdit = ({ editAdmin, setEditAdmin, setToggleEdit }) => {
 					onChange={handleChange}
 				/>
 				<div style={{ margin: '3% auto' }}>
-					<Button color='success' size='sm'>Submit</Button>
-					<Button color='danger' size ='sm' onClick={handleToggleClose}>
+					{success === false ? (
+						<Button color='success' size='sm'>
+							Submit
+						</Button>
+					) : (
+						<Button color='success' size='sm'>
+							Submit <Spinner size='sm' style={{ color: 'whitesmoke' }} />
+						</Button>
+					)}
+					<Button color='danger' size='sm' onClick={handleToggleClose}>
 						Cancel
 					</Button>
 				</div>

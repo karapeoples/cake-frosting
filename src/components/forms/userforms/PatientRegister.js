@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { registerPatient } from '../../../redux/actions'
-import { Label, Input, Button } from 'reactstrap'
+import { Label, Input, Button, Spinner } from 'reactstrap'
 
 const PatientRegister = () => {
+	const [success, setSuccess]= useState(false)
   const dispatch = useDispatch()
 	const [patient, setPatient] = useState({
 		fullName: '',
@@ -22,8 +23,11 @@ const PatientRegister = () => {
 	}
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(registerPatient(patient))
+		e.preventDefault()
+		setSuccess(true)
+		setTimeout(() =>{
+			dispatch(registerPatient(patient))
+		}, 1500)
     setPatient({
 					fullName: '',
 					email: '',
@@ -89,9 +93,15 @@ const PatientRegister = () => {
 					onChange={handleChange}
 				/>
 				<div style={{ margin: '3% auto' }}>
-					<Button color='success' size='sm'>
-						Submit
-					</Button>
+					{success === false ? (
+						<Button color='success' size='sm'>
+							Submit
+						</Button>
+					) : (
+						<Button color='success' size='sm'>
+							Submit <Spinner size='sm' style={{ color: 'whitesmoke' }} />
+						</Button>
+					)}
 				</div>
 			</form>
 		</div>

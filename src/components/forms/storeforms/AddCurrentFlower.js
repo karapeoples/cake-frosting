@@ -1,11 +1,12 @@
 import React, { useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCurrentFlower} from '../../../redux/actions'
-import {Modal, ModalBody, Input, Label, Button, Alert} from 'reactstrap'
+import {Modal, ModalBody, Input, Label, Button, Alert, Spinner} from 'reactstrap'
 
 const AddCurrentFlower = ({open, setStockToggle, setToggle }) => {
   const currentFlower = useSelector(state => state.flower)
-  const stockedFlower = useSelector((state) => state.stockFlower)
+	const stockedFlower = useSelector((state) => state.stockFlower)
+	const [success, setSuccess]= useState(false)
   const [infused, setInfused] = useState({
     is_infused: false,
     name: currentFlower.name,
@@ -26,8 +27,11 @@ const AddCurrentFlower = ({open, setStockToggle, setToggle }) => {
   }
 
   const submit = (e) => {
-    e.preventDefault()
-    dispatch(addCurrentFlower(infused))
+		e.preventDefault()
+		setSuccess(true)
+		setTimeout(() =>{
+			dispatch(addCurrentFlower(infused))
+		}, 1500)
     setToggle(false)
     setStockToggle(false)
   }
@@ -40,9 +44,9 @@ const AddCurrentFlower = ({open, setStockToggle, setToggle }) => {
 							<Button onClick={toggle} color='danger' size='sm' style={{ marginLeft: '90%' }}>
 								X
 							</Button>
-							<Alert color='success' style={{width: '75%', margin: '0 auto'}}>
+							<Alert color='success' style={{ width: '75%', margin: '0 auto' }}>
 								<b>
-										The Flower <em style={{ fontSize: '125%' }}>{stockedFlower.name}</em> is Already In Stock!!
+									The Flower <em style={{ fontSize: '125%' }}>{stockedFlower.name}</em> is Already In Stock!!
 								</b>
 							</Alert>
 						</div>
@@ -67,9 +71,15 @@ const AddCurrentFlower = ({open, setStockToggle, setToggle }) => {
 							</Label>
 
 							<div style={{ margin: '3% auto' }}>
-								<Button color='success' size='sm'>
-									Add In Stock
-								</Button>
+								{success === false ? (
+									<Button color='success' size='sm'>
+										Submit
+									</Button>
+								) : (
+									<Button color='success' size='sm'>
+										Submit <Spinner size='sm' style={{ color: 'whitesmoke' }} />
+									</Button>
+								)}
 								<Button color='danger' size='sm' onClick={toggle}>
 									Cancel
 								</Button>

@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { updateUsers, updateCard, getPatients } from '../../../redux/actions'
 import { useDispatch } from 'react-redux'
-import { Button, Label, Input } from 'reactstrap'
+import { Button, Label, Input, Spinner } from 'reactstrap'
 
 const PatientEdit = ({ editPatient, setEditPatient, editCard, setEditCard, setToggleEdit, role_id }) => {
+	const [success, setSuccess]= useState(false)
 	const dispatch = useDispatch()
 
 	const handleToggleClose = (e) => {
@@ -13,8 +14,11 @@ const PatientEdit = ({ editPatient, setEditPatient, editCard, setEditCard, setTo
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-    dispatch(updateUsers(editPatient))
-    dispatch(updateCard(editCard, role_id))
+		setSuccess(true)
+		setTimeout(() => {
+		dispatch(updateUsers(editPatient))
+			dispatch(updateCard(editCard, role_id))
+		}, 1500)
 		dispatch(getPatients())
 		setToggleEdit(false)
 	}
@@ -60,9 +64,15 @@ const PatientEdit = ({ editPatient, setEditPatient, editCard, setEditCard, setTo
 				<Label htmlFor='card'>Card</Label>
 				<Input bsSize='sm' type='text' name='card' value={editCard.card} placeholder='Enter Email' onChange={handleCard} />
 				<div style={{ margin: '3% auto' }}>
-					<Button color='success' size='sm'>
-						Submit
-					</Button>
+					{success === false ? (
+						<Button color='success' size='sm'>
+							Submit
+						</Button>
+					) : (
+						<Button color='success' size='sm'>
+							Submit <Spinner size='sm' style={{ color: 'whitesmoke' }} />
+						</Button>
+					)}
 					<Button color='danger' size='sm' onClick={handleToggleClose}>
 						Cancel
 					</Button>

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { registerAdmin } from '../../../redux/actions'
-import {Label, Input, Button} from 'reactstrap'
+import {Label, Input, Button, Spinner} from 'reactstrap'
 
 const AdminRegister = () => {
+	const [success, setSuccess] = useState(false)
   const dispatch = useDispatch()
 	const [admin, setAdmin] = useState({
 		fullName: '',
@@ -20,8 +21,11 @@ const AdminRegister = () => {
 		})
   }
   const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(registerAdmin(admin))
+		e.preventDefault()
+		setSuccess(false)
+		setTimeout(() =>{
+			dispatch(registerAdmin(admin))
+		}, 1500)
     setAdmin({
       fullName: '',
 			email: '',
@@ -75,9 +79,15 @@ const AdminRegister = () => {
 					onChange={handleChange}
 				/>
 				<div style={{ margin: '3% auto' }}>
-					<Button color='success' size='sm'>
-						Submit
-					</Button>
+					{success === false ? (
+						<Button color='success' size='sm'>
+							Submit
+						</Button>
+					) : (
+						<Button color='success' size='sm'>
+							Submit <Spinner size='sm' style={{ color: 'whitesmoke' }} />
+						</Button>
+					)}
 				</div>
 			</form>
 		</div>

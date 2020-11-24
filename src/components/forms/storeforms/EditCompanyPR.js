@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {  useDispatch } from 'react-redux'
 import { updateCompanyPR, preRollByName } from '../../../redux/actions'
-import { Modal, ModalBody, Input, Label, Button } from 'reactstrap'
+import { Modal, ModalBody, Input, Label, Button, Spinner } from 'reactstrap'
 
 const typeOptions = [
 	'Choose an Option',
@@ -13,7 +13,7 @@ const typeOptions = [
 ]
 
 const EditCompanyPR = ({open, pr, setNewPR, setToggle }) => {
-
+		const[success, setSuccess]= useState(false)
 		const dispatch = useDispatch()
 
 		const handleChange = (e) => {
@@ -22,8 +22,11 @@ const EditCompanyPR = ({open, pr, setNewPR, setToggle }) => {
 		const handleSubmit = (e) => {
 			e.persist()
 			e.preventDefault()
+			setSuccess(true)
+			setTimeout(() =>{
 			dispatch(updateCompanyPR(pr))
-			dispatch(preRollByName(pr.name))
+				dispatch(preRollByName(pr.name))
+			}, 1500)
 			setToggle(false)
 		}
 
@@ -77,9 +80,15 @@ const EditCompanyPR = ({open, pr, setNewPR, setToggle }) => {
 						<Label htmlFor='price'>Price</Label>
 						<Input bsSize='sm' type='number' name='price' value={pr.price} onChange={handleChange} />
 						<div style={{ margin: '3% auto' }}>
-							<Button color='success' size='sm'>
-								Submit
-							</Button>
+							{success === false ? (
+								<Button color='success' size='sm'>
+									Submit
+								</Button>
+							) : (
+								<Button color='success' size='sm'>
+									Submit <Spinner size='sm' style={{ color: 'whitesmoke' }} />
+								</Button>
+							)}
 							<Button color='danger' size='sm' onClick={toggle}>
 								Cancel
 							</Button>

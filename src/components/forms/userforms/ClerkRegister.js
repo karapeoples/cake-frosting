@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { registerClerk } from '../../../redux/actions'
-import { Label, Input, Button } from 'reactstrap'
+import { Label, Input, Button, Spinner } from 'reactstrap'
 
 const ClerkRegister = () => {
+	const [success, setSuccess] = useState(false)
   const dispatch = useDispatch()
 	const [clerk, setClerk] = useState({
 		fullName: '',
@@ -20,8 +21,11 @@ const ClerkRegister = () => {
 		})
 	}
   const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(registerClerk(clerk))
+		e.preventDefault()
+		setSuccess(false)
+		setTimeout(()=>{
+		dispatch(registerClerk(clerk))
+		}, 1500)
     setClerk({
       fullName: '',
 			email: '',
@@ -55,7 +59,15 @@ const ClerkRegister = () => {
 					onChange={handleChange}
 				/>
 				<Label htmlFor='phone'>Phone</Label>
-				<Input required bsSize='sm' type='tel' name='phone' value={clerk.phone} placeholder='Enter Phone' onChange={handleChange} />
+				<Input
+					required
+					bsSize='sm'
+					type='tel'
+					name='phone'
+					value={clerk.phone}
+					placeholder='Enter Phone'
+					onChange={handleChange}
+				/>
 				<Label htmlFor='password'>Password</Label>
 				<Input
 					required
@@ -67,9 +79,15 @@ const ClerkRegister = () => {
 					onChange={handleChange}
 				/>
 				<div style={{ margin: '3% auto' }}>
+					{success === false ? (
 						<Button color='success' size='sm'>
-						Submit
-					</Button>
+							Submit
+						</Button>
+					) : (
+						<Button color='success' size='sm'>
+							Submit <Spinner size='sm' style={{ color: 'whitesmoke' }} />
+						</Button>
+					)}
 				</div>
 			</form>
 		</div>

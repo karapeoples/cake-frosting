@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { preRollByName } from '../../../redux/actions'
 import CompanyProductCard from './CompanyProductCard'
-import { Button, Input } from 'reactstrap'
+import { Button, Input, Modal, ModalBody, Alert } from 'reactstrap'
 
 const CompanyPRCard = ({setToggle}) => {
 	const preRollName = useSelector((state) => state.companyPRS)
 	const dispatch = useDispatch()
 	const [toggleProduct, setToggleProduct] = useState(false)
 	const [search, setSearch] = useState('')
+	const [alertOpen, setAlertOpen] = useState(false)
 
 	const cancel = () => {
 		setToggle(false)
@@ -18,19 +19,34 @@ const CompanyPRCard = ({setToggle}) => {
 	const handleChange = async (e) => {
 		await setSearch(e.target.value)
 	}
+	const alertToggle = () => {
+		setAlertOpen(true)
+	}
 	const select = (e) => {
 		e.preventDefault()
 		if (search !== '') {
 			dispatch(preRollByName(search))
 			setToggleProduct(!false)
 		} else if (search === '') {
-			alert('Choose A PreRoll')
+			alertToggle()
 		}
 	}
 
 	return (
 		<div>
 			<section>
+				<Modal isOpen={alertOpen} toggle={alertToggle}>
+					<ModalBody>
+						<div>
+							<Button onClick={() => setAlertOpen(false)} color='danger' size='sm' style={{ marginLeft: '90%' }}>
+								X
+							</Button>
+							<Alert color='warning'>
+								<h1>Choose a PreRoll</h1>
+							</Alert>
+						</div>
+					</ModalBody>
+				</Modal>
 				<form onSubmit={select}>
 					<Input bsSize='sm' onClick={handleChange} onChange={handleChange} type='select' name='search' value={search}>
 						{preRollName.map((pr, i) => {
@@ -47,11 +63,11 @@ const CompanyPRCard = ({setToggle}) => {
 					</div>
 				</form>
 			</section>
-			{toggleProduct === !false ?
+			{toggleProduct === !false ? (
 				<section>
 					<CompanyProductCard />
 				</section>
-			 : null}
+			) : null}
 		</div>
 	)
 }

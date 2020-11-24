@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {  useDispatch } from 'react-redux'
 import { updateFlower, flowerByName } from '../../../redux/actions'
-import {Modal, ModalBody, Input, Label, Button} from 'reactstrap'
+import {Modal, ModalBody, Input, Label, Button, Spinner} from 'reactstrap'
 
 const typeOptions = [
 	'Choose an Option',
@@ -12,9 +12,8 @@ const typeOptions = [
 	'50/50 Hybrid',
 ]
 
-const EditFlower = ({open, setToggle, newFlower, setNewFlower }) => {
-
-
+const EditFlower = ({ open, setToggle, newFlower, setNewFlower }) => {
+	const [success, setSuccess]= useState(false)
 	const dispatch = useDispatch()
 
 
@@ -26,9 +25,12 @@ const EditFlower = ({open, setToggle, newFlower, setNewFlower }) => {
 		}
 		const handleSubmit = (e) => {
       e.persist()
-      e.preventDefault()
+			e.preventDefault()
+			setSuccess(true)
+			setTimeout(() =>{
       dispatch(updateFlower(newFlower))
-      dispatch(flowerByName(newFlower.name))
+				dispatch(flowerByName(newFlower.name))
+			},1500)
       setToggle(false)
 		}
 
@@ -81,8 +83,18 @@ const EditFlower = ({open, setToggle, newFlower, setNewFlower }) => {
 						<Label htmlFor='pricePerGram'>Price Per Gram</Label>
 						<Input bsSize='sm' type='number' name='pricePerGram' value={newFlower.pricePerGram} onChange={handleChange} />
 						<div style={{ margin: '3% auto' }}>
-							<Button color='success' size='sm'>Submit</Button>
-							<Button color='danger' size='sm' onClick={toggle}>Cancel</Button>
+							{success === false ? (
+								<Button color='success' size='sm'>
+									Submit
+								</Button>
+							) : (
+								<Button color='success' size='sm'>
+									Submit <Spinner size='sm' style={{ color: 'whitesmoke' }} />
+								</Button>
+							)}
+							<Button color='danger' size='sm' onClick={toggle}>
+								Cancel
+							</Button>
 						</div>
 					</form>
 				</ModalBody>
