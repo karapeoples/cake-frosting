@@ -29,8 +29,6 @@ const ProductPreRoll = () => {
 									/>
 								</div>
 								<h3>
-									Name:
-									<br />
 									{singlePR.name}
 								</h3>
 								<h5>
