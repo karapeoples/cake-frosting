@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import {useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { registerClerk } from '../../../redux/actions'
-import { Label, Input, Button, Spinner } from 'reactstrap'
+import { Label, Input, Button } from 'reactstrap'
 
 const ClerkRegister = () => {
-	const success = useSelector((state) => state.addSuccess)
   const dispatch = useDispatch()
 	const [clerk, setClerk] = useState({
 		fullName: '',
