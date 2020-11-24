@@ -37,7 +37,7 @@ const CompanyPRCard = ({setToggle}) => {
 			<section>
 				<Modal isOpen={alertOpen} toggle={alertToggle}>
 					<ModalBody>
-						<div>
+						<div style={{ margin: '0 auto' }}>
 							<Button onClick={() => setAlertOpen(false)} color='danger' size='sm' style={{ marginLeft: '90%' }}>
 								X
 							</Button>
