@@ -17,9 +17,6 @@ const LandingPage = () => {
     localStorage.setItem('is_Legal', false)
 	}
 
-	const toggle = () => {
-		setLegal(!legal)
-	}
 
 	useEffect(() => {
 		setLegal(!legal)
