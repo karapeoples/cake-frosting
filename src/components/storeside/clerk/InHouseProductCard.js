@@ -33,7 +33,7 @@ const InHouseProductCard = () => {
     setNewFlower(singleFlower)
   }
  const stockToggle =()=>{
-   setStock(!stock)
+   setStock(!false)
    setPreRoll(false)
    setEdit(false)
    dispatch(pickFlower(singleFlower.id))

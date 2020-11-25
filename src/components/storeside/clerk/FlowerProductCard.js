@@ -28,8 +28,8 @@ const FlowerProductCard = ({setToggle}) => {
   const select = (e) => {
   e.preventDefault()
     if (search !== '') {
-      dispatch(flowerByName(search))
-      setToggleProduct(!false)
+			dispatch(flowerByName(search))
+			setToggleProduct(!false)
     }
     else if (search === '') {
       alertToggle()
