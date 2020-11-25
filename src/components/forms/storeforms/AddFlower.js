@@ -30,6 +30,7 @@ const AddFlower = ({ open, setToggle }) => {
 		dispatch(addFlower(newFlower))
 		setNewFlower(flowerObject)
 		}, 1500)
+		setToggle(false)
   }
 
   const cancel = () => {

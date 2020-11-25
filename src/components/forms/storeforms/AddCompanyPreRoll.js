@@ -38,6 +38,7 @@ const handleSubmit = (e) => {
 		dispatch(addCompanyPR(pr))
 	}, 1500)
 	setNewPR(prObject)
+	setToggle(false)
 }
 
 const toggle = () => {
