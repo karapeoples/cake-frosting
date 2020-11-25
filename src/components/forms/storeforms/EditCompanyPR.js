@@ -34,7 +34,7 @@ const EditCompanyPR = ({open, pr, setNewPR, setToggle }) => {
 			setToggle(false)
 		}
   return (
-			<Modal isOpen={open} toggle={setToggle}>
+			<Modal isOpen={open}>
 				<ModalBody>
 					<h3 style={{ marginLeft: '25%' }}>Edit Company PreRoll</h3>L{' '}
 					<form onSubmit={handleSubmit}>

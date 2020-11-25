@@ -39,7 +39,7 @@ const EditFlower = ({ open, setToggle, newFlower, setNewFlower }) => {
 		}
 
 		return (
-			<Modal isOpen={open} toggle={setToggle}>
+			<Modal isOpen={open}>
 				<ModalBody>
 					<h3 style={{ marginLeft: '25%' }}>Edit Flower Info</h3>
 					<form onSubmit={handleSubmit}>

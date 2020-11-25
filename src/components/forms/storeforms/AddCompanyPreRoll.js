@@ -46,7 +46,7 @@ const toggle = () => {
 }
 
   return (
-			<Modal isOpen={open} toggle={setToggle}>
+			<Modal isOpen={open}>
 				<ModalBody>
 					<h3 style={{ marginLeft: '25%' }}>Add a New PreRoll</h3>
 					<form onSubmit={handleSubmit}>
