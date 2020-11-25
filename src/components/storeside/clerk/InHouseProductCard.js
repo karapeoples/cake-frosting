@@ -65,11 +65,11 @@ const InHouseProductCard = () => {
 
   }
   const addPreRollToggle = () => {
-    setAddPreRoll(!false)
     if (currentPR[0] === undefined) {
       return
     }
     dispatch(getCurrentPRById(currentPR[0].preRoll_id))
+    setAddPreRoll(!false)
   }
 
   const setOpenDelete = () => {

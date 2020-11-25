@@ -39,7 +39,7 @@ const AddCurrentFlower = ({open, setStockToggle, setToggle }) => {
   return (
 			<Modal isOpen={open}>
 				<ModalBody>
-					{stockedFlower.in_stock === 'true' ? (
+					{stockedFlower.in_stock === true ? (
 						<div>
 							<Button onClick={toggle} color='danger' size='sm' style={{ marginLeft: '90%' }}>
 								X

@@ -35,9 +35,9 @@ const submit = (e) => {
 }
 
   return (
-			<Modal isOpen={open} toggle={stockToggle}>
+			<Modal isOpen={open}>
 			<ModalBody>
-					{inStockPR.in_stock === 'true' ? (
+					{inStockPR.in_stock === true ? (
 						<div>
 							<Button onClick={toggle} color='danger' size='sm' style={{ marginLeft: '90%' }}>
 								X
