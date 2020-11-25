@@ -36,7 +36,7 @@ const LandingPage = () => {
 					/>
 				</div>
 				<div className='App-header'><h1>WELCOME TO STORE NAME HERE</h1></div>
-				<Modal isOpen={legal} toggle={toggle}>
+				<Modal isOpen={legal}>
 				<ModalBody style={{ margin: '3% auto' }}>
 					<h3>Are you 21 or Over?</h3>
 					<div style={{ margin: '3% auto' }}>
