@@ -46,6 +46,7 @@ export const GET_CURRENT_COMPANY_PR_BY_ID = 'GET_CURRENT_COMPANY_PR_BY_ID'
 export const GRAB_COMPANY_PR_TO_REMOVE = 'GRAB_COMPANY_PR_TO_REMOVE'
 export const DELETE_STOCK_COMPANY_PR = 'DELETE_STOCK_COMPANY_PR'
 
+const baseURL= 'https://cake-base-be.openode.io/api'
 //REGISTRATION & LOGIN
 export const registerPatient = (userObj) => dispatch => {
   axiosWithAuth()
@@ -298,7 +299,7 @@ export const updateFlower = (changes) => dispatch => {
 //IN STOCK FLOWERS
 export const getCurrentFlower = () => dispatch => {
 	axios
-		.get('https://turn-cake.herokuapp.com/api/stock/flower_stock')
+		.get(`${baseUrl}/stock/flower_stock`)
 		.then((res) => {
 			dispatch({ type: GET_STOCK, payload: res.data })
 		})
@@ -364,7 +365,7 @@ export const removeCurrentFlower = (id) => dispatch => {
 
 export const getCurrentPR = () => (dispatch) => {
 	axios
-		.get('https://turn-cake.herokuapp.com/api/stock/preRoll')
+		.get(`${baseUrl}/stock/preRoll`)
 		.then((res) => {
 			dispatch({ type: GET_STOCK_PR, payload: res.data })
 		})
@@ -482,7 +483,7 @@ export const updateCompanyPR = (changes) => (dispatch) => {
 //IN STOCK Company PreRolls
 export const getCurrentCompanyPR = () => (dispatch) => {
 	axios
-		.get('https://turn-cake.herokuapp.com/api/stock/pr_stock')
+		.get(`${baseUrl}/stock/pr_stock`)
 		.then((res) => {
 			dispatch({ type: GET_PR_STOCK, payload: res.data })
 		})

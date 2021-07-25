@@ -10,6 +10,6 @@ export const axiosWithAuth = () => {
 			Authorization: token,
 			role,
 		},
-		baseURL: 'https://cake-base-be.openode.io/',
+		baseURL: 'https://cake-base-be.openode.io/api',
 	})
 }
