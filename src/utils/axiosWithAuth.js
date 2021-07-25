@@ -10,6 +10,6 @@ export const axiosWithAuth = () => {
 			Authorization: token,
 			role,
 		},
-		baseURL: 'https://turn-cake.herokuapp.com/api',
+		baseURL: 'https://cake-base-be.openode.io/',
 	})
 }
