@@ -46,7 +46,8 @@ export const GET_CURRENT_COMPANY_PR_BY_ID = 'GET_CURRENT_COMPANY_PR_BY_ID'
 export const GRAB_COMPANY_PR_TO_REMOVE = 'GRAB_COMPANY_PR_TO_REMOVE'
 export const DELETE_STOCK_COMPANY_PR = 'DELETE_STOCK_COMPANY_PR'
 
-const baseUrl= 'https://cake-base-be.openode.io/api'
+// const baseUrl= 'http://localhost:4994/api'
+const baseUrl = 'https://cake-base-be.openode.io/api'
 //REGISTRATION & LOGIN
 export const registerPatient = (userObj) => dispatch => {
   axiosWithAuth()
