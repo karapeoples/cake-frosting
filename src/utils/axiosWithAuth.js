@@ -10,6 +10,7 @@ export const axiosWithAuth = () => {
 			Authorization: token,
 			role,
 		},
-		baseURL: 'https://cake-base-be.openode.io/api',
+		// baseURL: 'http:localhost:4994/api'
+		baseURL: 'https://cake-base.herokuapp.com/api',
 	})
 }
